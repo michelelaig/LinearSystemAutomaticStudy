@@ -52,6 +52,7 @@ def coeffs(f):
 		return f.as_poly().all_coeffs()
 
 def Chi4(dim,X):
+	#pprint(dim)
 	#pprint(X)
 	tmp = X
 	X4 = Matrix()
@@ -131,12 +132,15 @@ def concatena_matrici_orizzontalmente(L):
 	return result
 
 def Zassenhaus(s1,s2):
+	if not len(s1) or not len(s2):
+		return []
 	s1m = Matr_colonne(s1)
 	s2m = Matr_colonne(s2)
-	
+
 	tmp = s2m.T.row_join(Matrix([[0 for i in range(s2m.cols)] for j in range(s2m.rows)]).T)
 	tmp = s1m.T.row_join(s1m.T).col_join(tmp).echelon_form()
-	#pprint(tmp.T.columnspace())
+	pprint(tmp)
+	pprint(tmp.T.columnspace())
 	out = []
 	for v in tmp.T.columnspace():
 		flag_int = True
@@ -182,10 +186,13 @@ def append_down(M,R):
 
 
 def torna_ao(D):
+	#pprint(D)
 	if D.cols==3:
 		a = D.columnspace()[1][1]
 		o = -D.columnspace()[1][2]
-		#print(D.columnspace()[1][1])
+	if D.cols==2:
+		a = D.columnspace()[0][0]
+		o = -D.columnspace()[0][1]
 	return [a,o]
 
 def vecreale(v):
