@@ -8,7 +8,6 @@ from sympy import Matrix,Rational
 
 num_esercizi = 1
 
-#valori = ['1','2','3']#,'e','\pi']
 valori_diff = ['0','1','y_0']
 valori_t_diff = ['0','1','t_0']
 val_lim = ['0','+\\infty','-\\infty']
