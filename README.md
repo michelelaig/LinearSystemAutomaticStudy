@@ -1,6 +1,7 @@
 # LinearSystemAutomaticStudy
 
-
+Che serve avere installato? Boh io lo giro su devuan con pdflatex come compilatore e le librerie sono sympy,lcapy e quelle che chiederanno sympy etc 
+quando si romperà per le dipendenze rotte.
 
 Come si fa partire il file?
 
