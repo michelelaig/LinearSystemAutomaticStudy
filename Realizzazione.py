@@ -64,7 +64,7 @@ def forma_can_ragg(Nw,Dw):
 
 def forma_can_oss(Nw,Dw):
 	Nw,Dw = coefficienti_bene(Nw,Dw)
-	A = A_can_ragg(Dw).transpose()
+	A = A_can_ragg(Dw).transpose()#nn va bene
 	B = Matrix(Nw[::-1])
 	C = riga(A.cols-1).col_insert(A.cols,Matrix([1]))
 	return A,B,C
@@ -72,26 +72,26 @@ def forma_can_oss(Nw,Dw):
 
 def realizzazione(W):
 	out = ""
-	Nw = W[0]
-	Dw = W[1]
+	Nw,Dw = W[:2]
 
-	if Nw.rows==1 and Nw.cols==1:
-		for nw in Nw:
-			nw = coeffs(nw)
-			dw = coeffs(Dw)
-	
-			Ar,Br,Cr =  forma_can_ragg(nw,dw)
-			Ao,Bo,Co =  forma_can_oss(nw,dw)
-	out = "\[ W(s) = \\frac{%s}{%s} \]\n"%(str(nw),str(dw))
-	out+= "\subsubsection{Forma Canonica Raggiungibile}\n"
-	out+= "Con la realizzazione cano ragg viene \[ A = %s, B = %s, C= %s \]\n"%(l(Ar),l(Br),l(Cr))
-	out += "\[ W(s) = %s \n\]"%l(Cr*((s*eye(Ar.cols)-Ar)**-1)*Br)
-	out+= "\subsubsection{Forma Canonica Osservabile}\n"
-	out+= "Con la realizzazione cano oss viene \[ A = %s, B = %s, C= %s \]\n"%(l(Ao),l(Bo),l(Co))
-	out += "\[ W(s) = %s \n\]"%l(Co*((s*eye(Ao.cols)-Ao)**-1)*Bo)
-	
-	return out,[Ar,Br,Cr],[Ao,Bo,Co]
+	if Nw.shape==(1,1):
+					
+		nw = coeffs(Nw[0])
+		dw = coeffs(Dw)
 
+		Ar,Br,Cr =  forma_can_ragg(nw,dw)
+		Ao,Bo,Co =  forma_can_oss(nw,dw)
+	
+		out = "\[ W(s) = \\frac{%s}{%s} \]\n"%(str(nw),str(dw))
+		out+= "\subsubsection{Forma Canonica Raggiungibile}\n"
+		out+= "Con la realizzazione cano ragg viene \[ A = %s, B = %s, C= %s \]\n"%(l(Ar),l(Br),l(Cr))
+		out += "\[ W(s) = %s \n\]"%l(Cr*((s*eye(Ar.cols)-Ar)**-1)*Br)
+		out+= "\subsubsection{Forma Canonica Osservabile}\n"
+		out+= "Con la realizzazione cano oss viene \[ A = %s, B = %s, C= %s \]\n"%(l(Ao),l(Bo),l(Co))
+		out += "\[ W(s) = %s \n\]"%l(Co*((s*eye(Ao.cols)-Ao)**-1)*Bo)
+	
+		return out,[Ar,Br,Cr],[Ao,Bo,Co]
+	return "ValueError"
 
 
 #W = [Matrix([(s**2-1)]),((s+1)*(s**2+4*s+5))]

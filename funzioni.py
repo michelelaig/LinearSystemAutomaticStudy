@@ -37,19 +37,17 @@ def genera_matrice():
 def crea_esercizio(num,test):
 	#Il caso predefinito
 	print("Esercizio %d"%num)
-	A = genera_matrice()
-	B = Matrix([1,0,1])
-	C = Matrix([[1,-1,0]])
-	D = Matrix([0])
-	x_0 = Matrix([0,0,0,0])
-	u_t = [impulso(t)]#,gradino(t),sin(t)]
+	out = ""
+	D = Matrix()
+	x_0 = []
+	u_t = []#impulso(t)]#,gradino(t),sin(t)]
 	#77,88,99 sono valori speciali con matrici predefinite
 	if num==77:
 		#caso autovettori complessi
-		A = Matrix([[-3,-1,0],[2,-1,0],[-1,-1,-1]])
-		B = Matrix([1,0,1])
-		C = Matrix([[1,-1,0]])
-		x_0 = Matrix([0,0,0])
+		A = Matrix([[0,1,0,0],[0,-1,0,1],[0,0,0,0],[0,0,1,-2]])
+		B = Matrix([[0,0],[0,0],[2,0],[1,1]])
+		C = Matrix([[1,1,0,0],[2,0,0,0]])
+		D = Matrix([[0,0],[0,0]])
 
 	if num==88:
 		A = Matrix([[1,-3,-2],[2,-4,-2],[-1,1,0]])
@@ -63,17 +61,15 @@ def crea_esercizio(num,test):
 		C = Matrix([[1,-1,0]])
 		x_0 = Matrix([0,0,0])
 	if num==111:
-		A = Matrix([[-1,0],[0,-2]])
-		B = Matrix([1,-1])
-		C = Matrix([[1,1]])
-		D = Matrix([0])
-		x_0 = Matrix([0,0])
+		A = Matrix([[0,1],[0,-1]])
+		B = Matrix([[0],[1]])
+		C = Matrix([[1,1],[2,0]])
+		D = Matrix([[0],[0]])
 	if num==122:
-		A = Matrix([[-3,1,0,0],[0,-1,0,0],[0,0,-2,0],[0,1,1,-1]])
-		B = Matrix([1,0,0,0])
-		C = Matrix([[1,1,0,0]])
-		D = Matrix([0])
-		x_0 = Matrix([0,0,0,0])
+		A = Matrix([[0,0],[1,-2]])
+		B = Matrix([[2,0],[1,1]])
+		C = Matrix([[0,1]])
+		D = Matrix([[0,0]])
 	if num==133:
 		A = Matrix([-10])
 		B = Matrix([1])
@@ -82,23 +78,20 @@ def crea_esercizio(num,test):
 		x_0 = Matrix([0])
 	if num==144:
 		rat = Rational(3,2)
-		A = Matrix([[2,0,0],[-3,0,1],[3,1,0]])
-		B = Matrix([[1],[-2],[2]])
-		C = Matrix([[-2,-1,1]])
+		A = Matrix([[-1,1,0],[1,-2,1],[1,1,-2]])
+		B = Matrix([[1],[0],[1]])
+		C = Matrix([[1,-1,0]])
 		D = Matrix([[0]])
 		x_0 = []
-		u_t = [2*t*gradino(t),2*t*gradino(t-1),-1*gradino(t),-1*gradino(t-1),cos(t)*gradino(t),cos(t)*gradino(t-1)]#[E**t*sin(2*t+1)]
-
-	#u_t = [choice(ingressi_possibili)]
+		u_t = []#2*t*gradino(t),2*t*gradino(t-1),-1*gradino(t),-1*gradino(t-1),cos(t)*gradino(t),cos(t)*gradino(t-1)]#[E**t*sin(2*t+1)]
+	
 	print("\tStudio tempo continuo")
 	out = "Studiare il sistema \[S:\\begin{cases}\overset{\cdot}{x} = %s x+ %su\\\\y = %s x +%s u\end{cases}\]"%(l(A),l(B),l(C),l(D))
-	'''
 	out +="\subsection{Studio Risposta Libera}\n"
 	s, Xl_flag = studioTempoContinuo(A,B,C,D,x_0,u_t,test)
 	out += s
 	if not Xl_flag:
 		return out
-	'''
 	if A.rows>1:
 		print("\tStudio Osservabilità")
 		out +="\n\subsection{Studio Osservabilità}\n"
@@ -112,7 +105,7 @@ def crea_esercizio(num,test):
 		print("\tScomposizione di Kalman")
 		out +="\n\subsection{Scomposizione di Kalman}\n"
 		out += scomposizioneKalman(A,B,C,I,R_,test)
-		
+	
 	
 	print("\tStudio in Laplace")
 	out +="\n\subsection{Studio Funzione di trasferimento}\n"
@@ -122,9 +115,10 @@ def crea_esercizio(num,test):
 	print("\tDiscretizzazione")
 	s,d = discretizzazioneDaW(W)
 	out+=s
+	'''
 	print("\tRealizzazione")
 	out+="\n\subsection{Realizzazione}\n"
 	s,ragg,oss = realizzazione(W)
 	out+=s
-	'''
+	
 	return out

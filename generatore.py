@@ -18,7 +18,6 @@ test = False
 def compila_documento(tipo):
 	stringone = ''
 	i = 0
-
 	if tipo=="test":
 		for i in array_test:
 			print(i)
@@ -31,8 +30,8 @@ def compila_documento(tipo):
 		stringone+=st
 	elif tipo == "W":
 		k = -Rational(3,2)
-		Wn = Matrix([s**2+3*s-4])
-		Wd = (s**2+100)*(10*s+1)
+		Wn = Matrix([s*(s-10)**2])
+		Wd = ((s**2+1)**2)*((s-1)**3)
 		W = [[Wn,Wd]]
 
 		st,a = funzioneTrasferimento(None,None,None,None,None,None,W =W)
@@ -84,7 +83,7 @@ t_out.write(template)
 t_out.close()
 
 print()
-if flag_compila:
+if flag_compila :
 	#subprocess.run(["pdflatex",NOME_OUT],stdout=subprocess.DEVNULL)
 	subprocess.run(["pdflatex",NOME_OUT])
 	subprocess.run(["rm",NOME_OUT+'.aux'])

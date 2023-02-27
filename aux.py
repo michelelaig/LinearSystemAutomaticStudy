@@ -202,7 +202,7 @@ def vecreale(v):
 			return False
 	return True
 
-def str_autovec_r(vec_r):
+def str_autovec_r(vec_r) -> str:
 	#pprint(vec_r)
 	out = ""
 	for v in vec_r:
@@ -216,7 +216,7 @@ def str_autovec_r(vec_r):
 			out += "%s : %s "%(l(v),l(vec_r[v][1][0]))
 	return out
 
-def EDT(D,dim,vecs_r,ao):
+def EDT(D,dim,vecs_r,ao)->Matrix:
 	if not len(ao) or dim!=3:
 		return simplify((D*t).exp())
 	out = Matrix()

@@ -8,8 +8,8 @@ from aux import l,L,invL,coeffs,tipi_prim
 from sympy.physics.control.lti import TransferFunction as symTransFun
 from sympy.physics.control.control_plots import bode_plot as symBode
 
-from control import tf as conTransFun
-from control import nyquist_plot as conNyquistPlot
+#from control import tf as conTransFun
+#from control import nyquist_plot as conNyquistPlot
 
 from lcapy import expr
 
@@ -68,7 +68,7 @@ def graficiBode(num,det):
 	return out
 
 funz_caratt_1 = "\nLe funzioni caratteristiche sono \[\\begin{array}{rcl}  H(s) & = & \Phi(s)B \\\\ \Psi(s) & = & C \Phi(s)\\\\ W(s) & = & C(sI-A)^{-1}B  \end{array} \]\n"
-funz_caratt_2 = "\ne quindi \[ H(s)  =  %s \ \Psi(s) = %s \]\n\[ W(s)  =  %s   \] "
+funz_caratt_2 = "\ne quindi \[ H(s)  =  %s \ \Psi(s) = %s \]\n\[ W(s)  =  %s = %s  \] "
 
 
 def f_l(N,D):
@@ -86,13 +86,14 @@ def strap_type(l):
 
 def graficiNyquist(num,det):
 	out = ""
+	
 	if num.rows>1 and num.cols==1:
 		for r in range(num.rows):
 			out+= "\nValore $ %s $ della matrice delle funzioni di trasferimento:\n"%l(r)
 			#La roba dei coefficienti è obsoleta
 			#num_c = strap_type(num.row(r)[0].as_poly().all_coeffs())
 			#det_c = strap_type(det.as_poly().all_coeffs())
-			out+= graficiNyquistUniDim(num.row(r)[0],det_c)
+			out+= graficiNyquistUniDim(num.row(r)[0],det)
 	if num.rows==1 and num.cols==1:
 		#print(num)
 		#print(det)
@@ -117,12 +118,12 @@ def invLaplace(y_s):
 		y_t = 0
 		for ys in ar:
 			y_t+=ys
-		
+			
 		return out%(tmp,tmp1,l(y_t))
 	return "\n\[ y(t) = \mathcal{L}^{-1}[y(s)] = %s \]"%invL(y_s)
 
 
-def solo_bode_nyquist(W):
+def solo_bode_nyquist(W :Matrix)->str:
 	W_num = W[0]
 	P_d = W[1]
 	out = ""
@@ -134,7 +135,7 @@ def solo_bode_nyquist(W):
 	out += graficiN
 	
 	return out
-def funzioneTrasferimento(A,B,C,D,X_0,U_t,W=None):
+def funzioneTrasferimento(A:Matrix,B:Matrix,C:Matrix,D:Matrix,X_0,U_t,W=None):
 	out = ""
 	if W:
 		for w in W:
@@ -159,7 +160,7 @@ def funzioneTrasferimento(A,B,C,D,X_0,U_t,W=None):
 	#P_d = (s**2+3*s+2)*(s**2+1)
 
 
-	out+= funz_caratt_2%(f_l(H_num,P_d),f_l(Psi_num,P_d),f_l(W_num,P_d))
+	out+= funz_caratt_2%(f_l(H_num,P_d),f_l(Psi_num,P_d),f_l(W_num,P_d),l(simplify(W_num/P_d)))
 	graficiB = graficiBode(W_num,P_d)
 	out += graficiB
 

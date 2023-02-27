@@ -31,7 +31,7 @@ def vecs_ab(vecs):
 	
 	return [u_a,u_b]
 
-def autocose(A):
+def autocose(A : Matrix):
 	#ritorna le autovalorivettori
 	vecst = A.eigenvects()
 	#pprint(vecst)
@@ -107,7 +107,7 @@ def evoluzioneLibera(eAt,x_0):
 def evoluzioneForzata(eAt,B,u):
 	return "L'evoluzione forzata con $u = %s$ è \[ x_F = \Phi(t) * B u = %s u = %s \]\n"%(l(u),l(eAt*B),l(eAt*B*u)),eAt*B
 
-def rispostaLibera(x_L,C):
+def rispostaLibera(x_L: Matrix,C :Matrix):
 	y_L = C*x_L
 	return "La risposta libera è \[ y_L = \Psi(t) x_0 = %s \]\n"%l(y_L),y_L
 
@@ -122,14 +122,14 @@ def risposta(y_L,y_F,u):
 	return "La risposta totale è \[ y = y_L + y_F = %s + %s u = %s\]\n"%(l(y_L),l(y_F),l(y_L+y_F*u)),0
 
 
-def studioTempoContinuo(A,B,C,D_s,X_0,u,test):
+def studioTempoContinuo(A : Matrix,B: Matrix,C: Matrix,D_s: Matrix,X_0: Matrix,u,test):
 	#ppt(test,A)
 	lambda_ = symbols("lambda")
 	out = consegna%(l(A))
 	out+="Il determinante di $A-\lambda$ è $ %s $.\n"%l((A-lambda_*eye(A.rows)).det())
 	vals_r,vals_i,vecs_r,vecs_i = autocose(A)
-	#pprint(A.eigenvects())	
-	#pprint(vals_r)
+
+
 	out += autva_r%(vals_r)
 	#pprint(x_0)	
 	#pt(test,"autovalori reali: "+str(vals_r))
@@ -180,16 +180,7 @@ def studioTempoContinuo(A,B,C,D_s,X_0,u,test):
 
 	out+="\subsubsection{Osservabilità}\n I modi naturali osservabili sono quelli tali che \n\[ C \cdot u_i   \\neq 0\]\n"
 	out+="\subsubsection{Eccitabilità}\n I modi naturali eccitabili sono quelli tali che \n\[v_i' \cdot B \\neq 0\]\n"
-	'''
-	LA ROBA OBSOLETA VA FATTA CON L'INTEGRALE ALL'INGRESSO, solo che mo non so come fare
-	for u_ in u:
-		s, x_F = evoluzioneForzata(eAt,B,u_)
-		out += s
-		s,y_F = rispostaForzata(x_F,C,D_s,u_)
-		out += s
 
-		s,y = risposta(y_L,y_F,u_)
-	'''
 
 	return out,True
 	
