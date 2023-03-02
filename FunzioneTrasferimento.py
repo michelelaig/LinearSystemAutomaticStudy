@@ -135,6 +135,9 @@ def solo_bode_nyquist(W :Matrix)->str:
 	out += graficiN
 	
 	return out
+
+
+
 def funzioneTrasferimento(A:Matrix,B:Matrix,C:Matrix,D:Matrix,X_0,U_t,W=None):
 	out = ""
 	if W:

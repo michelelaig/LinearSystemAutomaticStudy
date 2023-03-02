@@ -11,8 +11,7 @@ from lcapy import expr
 from lcapy.discretetime import z
 
 from math import gcd
-
-
+from typing import List
 
 lin_ind_3 = [Matrix([1,0,0]),Matrix([0,1,0]),Matrix([0,0,1])]
 
@@ -139,8 +138,8 @@ def Zassenhaus(s1,s2):
 
 	tmp = s2m.T.row_join(Matrix([[0 for i in range(s2m.cols)] for j in range(s2m.rows)]).T)
 	tmp = s1m.T.row_join(s1m.T).col_join(tmp).echelon_form()
-	pprint(tmp)
-	pprint(tmp.T.columnspace())
+	#pprint(tmp)
+	#pprint(tmp.T.columnspace())
 	out = []
 	for v in tmp.T.columnspace():
 		flag_int = True
@@ -154,12 +153,6 @@ def Zassenhaus(s1,s2):
 	return out
 
 def intersezione_spazi_vettoriali(I, R):
-	# Troviamo l'intersezione degli spazi vettoriali
-	
-	#Creo una matrice G dei vettori già trovati, ogni volta che trovo un candidato nuovo controllo se fa alzare il rango di G.
-	#Se non lo fa alzare lo scarto.
-	
-
 	return Matr_colonne(Zassenhaus(I,R))
 
 
@@ -206,6 +199,7 @@ def str_autovec_r(vec_r) -> str:
 	#pprint(vec_r)
 	out = ""
 	for v in vec_r:
+		'''
 		if vec_r[v][0]!=1:
 			s = ""
 			for vmult in vec_r[v][1]:
@@ -214,58 +208,45 @@ def str_autovec_r(vec_r) -> str:
 			out += "%s :\left( %s \\right) "%(l(v),s)
 		else:
 			out += "%s : %s "%(l(v),l(vec_r[v][1][0]))
+		'''
+		#DATESTARE
+		if vec_r[v][0] != 1:
+			s = ", ".join(l(vmult) for vmult in vec_r[v][1])
+			out += "%s: (%s)" % (l(v), s)
+		else:
+			out += "%s: %s" % (l(v), l(vec_r[v][1][0]))
 	return out
 
-def EDT(D,dim,vecs_r,ao)->Matrix:
-	if not len(ao) or dim!=3:
+def EDT(D:Matrix,dim,vecs_r,ao)->Matrix:
+	if not ao or dim!=3:
 		return simplify((D*t).exp())
 	out = Matrix()
 	if dim==3:
-		a = ao[0]
-		o = ao[1]
-		#print(vecs_r[list(vecs_r.keys())[0]][1])
-		tmp = Matrix([E**(list(vecs_r.keys())[0]*t),0,0])
-		#cambioare con vecvs_r
-		out = out.col_insert(0,tmp)
-		tmp = Matrix([0,E**(a*t)*cos(o*t),-E**(a*t)*sin(o*t)])
-		out = out.col_insert(1,tmp)
-		tmp = Matrix([0,E**(a*t)*sin(o*t),E**(a*t)*cos(o*t)])
-		out = out.col_insert(2,tmp)
+		a,o = ao
+		out = Matrix([
+			[E**(list(vecs_r.keys())[0] * t), 0, 0],
+			[0, E**(a * t) * cos(o * t), -E**(a * t) * sin(o * t)],
+			[0, E**(a * t) * sin(o * t), E**(a * t) * cos(o * t)]
+		])
 	
 	return out
 
 
 
 
-def crea_T_inv_Chi(X1,X2,X3,X4):
-	tmp = Matrix()
-	if X1.cols:
-		tmp = add_columns(tmp,X1.columnspace())
-	if X2.cols:
-		tmp = add_columns(tmp,X2.columnspace())
-	if X3.cols:
-		tmp = add_columns(tmp,X3.columnspace())
-	if X4.cols:
-		tmp = add_columns(tmp,X4.columnspace())
+def crea_T_inv_Chi(X1:Matrix,X2:Matrix,X3:Matrix,X4:Matrix)->Matrix:
+	tmp = add_columns(Matrix(),X1.columnspace()+X2.columnspace()+X3.columnspace()+X4.columnspace())
 	return tmp
 
-def crea_T_inv(I,n):
-	#Per ora metto quelli che so essere lin indip per come è fatta la matrice
-	if len(I)==0:
-		return eye(n)
-	n_gia_presenti = len(I)
-	identita = eye(n).columnspace()
-	prima_parte = identita[n_gia_presenti::]	
-	seconda_parte = identita[:n_gia_presenti]
-	identita = prima_parte+seconda_parte
-	out = Matr_colonne(I)
-	for c in identita:
-		tmp = out.row_join(c)
-		if tmp.rank()>out.rank():
-			out = tmp
-		if out.rows==out.cols:
-			break
-	return out
+def crea_T_inv(I:List[Matrix], n:int)->Matrix:
+	# Create the identity matrix of size n
+	T = eye(n)
+	# Replace the columns of T with the columns of I
+	for i in range(len(I)):
+		T[:, i] = I[i]
+	return T
+
+
 
 def mcd(v):
 	den = v[0]
