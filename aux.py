@@ -238,13 +238,26 @@ def crea_T_inv_Chi(X1:Matrix,X2:Matrix,X3:Matrix,X4:Matrix)->Matrix:
 	tmp = add_columns(Matrix(),X1.columnspace()+X2.columnspace()+X3.columnspace()+X4.columnspace())
 	return tmp
 
-def crea_T_inv(I:List[Matrix], n:int)->Matrix:
-	# Create the identity matrix of size n
-	T = eye(n)
-	# Replace the columns of T with the columns of I
-	for i in range(len(I)):
-		T[:, i] = I[i]
-	return T
+def crea_T_inv(I,n):
+	#Per ora metto quelli che so essere lin indip per come è fatta la matrice
+	if not I:
+		return eye(n)
+	#n_gia_presenti = len(I)
+	#identita = eye(n).columnspace()
+	#prima_parte = identita[n_gia_presenti::]	
+	#seconda_parte = identita[:n_gia_presenti]
+	#identita = prima_parte+seconda_parte
+	identita = eye(n).columnspace()[len(I):] + eye(n).columnspace()[:len(I)]
+
+	out = Matr_colonne(I)
+	for c in identita:
+		#out = max(out.row_join(c), key=lambda x: x.rank())
+		tmp = out.row_join(c)
+		if tmp.rank()>out.rank():
+			out = tmp
+		if out.is_square:
+			break
+	return out
 
 
 

@@ -53,12 +53,15 @@ def crea_esercizio(num,test):
 		A = Matrix([[1,-3,-2],[2,-4,-2],[-1,1,0]])
 		B = Matrix([2,1,0])
 		C = Matrix([[1,-2,-1]])
+		D = Matrix([0])
 		x_0 = Matrix([0,0,0])
 
 	if num==99:
-		A = Matrix([[3,2,-4],[0,1,0],[2,1,-3]])
+		A = Matrix([[2,1,0],[0,2,1],[0,0,2]])
 		B = Matrix([1,1,0])
 		C = Matrix([[1,-1,0]])
+		D = Matrix([0])
+
 		x_0 = Matrix([0,0,0])
 	if num==111:
 		A = Matrix([[0,1],[0,-1]])
@@ -78,7 +81,7 @@ def crea_esercizio(num,test):
 		x_0 = Matrix([0])
 	if num==144:
 		rat = Rational(3,2)
-		A = Matrix([[-1,1,0],[1,-2,1],[1,1,-2]])
+		A = Matrix([[0,1,0],[1,0,0],[0,0,-2]])
 		B = Matrix([[1],[0],[1]])
 		C = Matrix([[1,-1,0]])
 		D = Matrix([[0]])
@@ -115,10 +118,10 @@ def crea_esercizio(num,test):
 	print("\tDiscretizzazione")
 	s,d = discretizzazioneDaW(W)
 	out+=s
-	'''
 	print("\tRealizzazione")
 	out+="\n\subsection{Realizzazione}\n"
 	s,ragg,oss = realizzazione(W)
 	out+=s
+	'''
 	
 	return out

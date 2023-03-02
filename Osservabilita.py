@@ -78,7 +78,7 @@ def studioOsservabilita(A,C):
 
 	T_inv = crea_T_inv(I,A.cols)	
 	out += str_T_inv%(l(T_inv))
-	
+	#print(T_inv)
 	T = T_inv**-1
 
 	out += equaz2%("T",l(T))

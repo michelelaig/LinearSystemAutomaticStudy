@@ -86,7 +86,8 @@ def strap_type(l):
 
 def graficiNyquist(num,det):
 	out = ""
-	
+	if num[0]==0:
+		return "No Nyquist"
 	if num.rows>1 and num.cols==1:
 		for r in range(num.rows):
 			out+= "\nValore $ %s $ della matrice delle funzioni di trasferimento:\n"%l(r)
@@ -157,11 +158,17 @@ def funzioneTrasferimento(A:Matrix,B:Matrix,C:Matrix,D:Matrix,X_0,U_t,W=None):
 	out+= funz_caratt_1
 	H_num = simplify(Phi_num*B)
 	Psi_num = simplify(C*Phi_num)
+	'''
+	pprint(C)
+	pprint(H_num)
+	pprint(D)
+	pprint(P_d)
+	pprint(C*H_num)
+	'''
 	W_num = simplify(C*H_num)+(D*P_d)
 	
 	#W_num = Matrix([s-10])
 	#P_d = (s**2+3*s+2)*(s**2+1)
-
 
 	out+= funz_caratt_2%(f_l(H_num,P_d),f_l(Psi_num,P_d),f_l(W_num,P_d),l(simplify(W_num/P_d)))
 	graficiB = graficiBode(W_num,P_d)
