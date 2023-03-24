@@ -37,7 +37,7 @@ def genera_matrice():
 	return mat
 
 def crea_esercizio(num,test):
-	print("Esercizio %d"%num)
+	print(f"Esercizio {num}")
 	out = ""
 
 
