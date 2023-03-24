@@ -5,6 +5,8 @@ from FunzioneTrasferimento import funzioneTrasferimento
 from Kalman import scomposizioneKalman
 from Discretizzazione import discretizzazioneDaW
 from Realizzazione import realizzazione
+from Classi import sistemi
+
 from tqdm import tqdm
 
 from aux import l,gradino,impulso
@@ -35,59 +37,14 @@ def genera_matrice():
 	return mat
 
 def crea_esercizio(num,test):
-	#Il caso predefinito
 	print("Esercizio %d"%num)
 	out = ""
-	D = Matrix()
-	x_0 = []
-	u_t = []#impulso(t)]#,gradino(t),sin(t)]
-	#77,88,99 sono valori speciali con matrici predefinite
-	if num==77:
-		#caso autovettori complessi
-		A = Matrix([[0,1,0,0],[0,-1,0,1],[0,0,0,0],[0,0,1,-2]])
-		B = Matrix([[0,0],[0,0],[2,0],[1,1]])
-		C = Matrix([[1,1,0,0],[2,0,0,0]])
-		D = Matrix([[0,0],[0,0]])
 
-	if num==88:
-		A = Matrix([[1,-3,-2],[2,-4,-2],[-1,1,0]])
-		B = Matrix([2,1,0])
-		C = Matrix([[1,-2,-1]])
-		D = Matrix([0])
-		x_0 = Matrix([0,0,0])
 
-	if num==99:
-		A = Matrix([[2,1,0],[0,2,1],[0,0,2]])
-		B = Matrix([1,1,0])
-		C = Matrix([[1,-1,0]])
-		D = Matrix([0])
+	if num in sistemi:
+		A,B,C,D,x_0,u_t = sistemi[num].get_dati()
 
-		x_0 = Matrix([0,0,0])
-	if num==111:
-		A = Matrix([[0,1],[0,-1]])
-		B = Matrix([[0],[1]])
-		C = Matrix([[1,1],[2,0]])
-		D = Matrix([[0],[0]])
-	if num==122:
-		A = Matrix([[0,0],[1,-2]])
-		B = Matrix([[2,0],[1,1]])
-		C = Matrix([[0,1]])
-		D = Matrix([[0,0]])
-	if num==133:
-		A = Matrix([-10])
-		B = Matrix([1])
-		C = Matrix([1])
-		D = Matrix([0])
-		x_0 = Matrix([0])
-	if num==144:
-		rat = Rational(3,2)
-		A = Matrix([[0,1,0],[1,0,0],[0,0,-2]])
-		B = Matrix([[1],[0],[1]])
-		C = Matrix([[1,-1,0]])
-		D = Matrix([[0]])
-		x_0 = []
-		u_t = []#2*t*gradino(t),2*t*gradino(t-1),-1*gradino(t),-1*gradino(t-1),cos(t)*gradino(t),cos(t)*gradino(t-1)]#[E**t*sin(2*t+1)]
-	
+
 	print("\tStudio tempo continuo")
 	out = "Studiare il sistema \[S:\\begin{cases}\overset{\cdot}{x} = %s x+ %su\\\\y = %s x +%s u\end{cases}\]"%(l(A),l(B),l(C),l(D))
 	out +="\subsection{Studio Risposta Libera}\n"

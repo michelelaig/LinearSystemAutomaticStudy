@@ -12,8 +12,8 @@ valori_diff = ['0','1','y_0']
 valori_t_diff = ['0','1','t_0']
 val_lim = ['0','+\\infty','-\\infty']
 
-array_test = [77,88,99,111,122,133,144]
-#array_test = [99]
+array_test = [77,88,99,111,122,133]
+array_test = [145]
 test = False
 def compila_documento(tipo):
 	stringone = ''

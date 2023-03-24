@@ -24,6 +24,7 @@ def vecs_ab(vecs):
 	if v.rows==2:
 		u_a = Matrix([re(v[0]),re(v[1])])
 		u_b = Matrix([im(v[0]),im(v[1])])
+		#print('ciao')
 		
 	else:
 		u_a = Matrix([re(v[0]),re(v[1]),re(v[2])])
@@ -62,7 +63,7 @@ def autocose(A : Matrix):
 
 def generaU(A,dim,vecs_r,vecs_i):
 	#Ritorna la matrice degli autovettori sinistri e alpha, omega se ci sono
-	if len(vecs_i):
+	if len(vecs_i) and A.cols<4:
 		#pprint(vecs_i)
 		U = Matrix()
 		for v in vecs_r:
@@ -151,17 +152,15 @@ def studioTempoContinuo(A : Matrix,B: Matrix,C: Matrix,D_s: Matrix,X_0: Matrix,u
 	out += stringa_procedimento_Jordan(A)
 
 	#Variabili ausiliarie
-	T_1=U
-
 	V = U**-1
-	T = V
+	T,T_1 = V,U
 	D = T*A*T_1
 	
 	out+= U_V_str%(l(U),l(V))
 	out+=D_str%(l(D))
 	
 	ao = []
-	if len(vals_i):
+	if len(vals_i) and A.cols <4:
 		ao = torna_ao(D)#[alpha,omega]
 		out+=ao_str%(l(ao[0]),l(ao[1]))
 
