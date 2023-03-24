@@ -17,13 +17,19 @@ equaz4 =	"\[ \n%s = %s = %s = %s \]\n"
 equaz5 =	"\[ \n%s = %s = %s = %s = %s \]\n"
 
 
-def crea_O(C,A):
+def crea_O(C:Matrix,A:Matrix):
+	O = C
+	
+	for i in range(1,A.rows):
+		O = O.col_join(C*(A**i))
+	'''
 	if A.rows==4:
 		O = append_down(C,[C*A,C*A*A,C*A*A*A])
 	if A.rows==3:
 		O = append_down(C,[C*A,C*A*A])
 	if A.rows==2:
 		O = append_down(C,[C*A])
+	'''
 	return O 
 
 
