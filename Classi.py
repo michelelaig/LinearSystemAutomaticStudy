@@ -58,16 +58,37 @@ sistema_133 = Sistema(n=133,		A = Matrix([-10]),
 		D = Matrix([0]),
 		X_0 = Matrix([0]))
 
-sistema_144  = Sistema(n=144, A = Matrix([[2,0,0],[-3,0,1],[3,1,0]]),
-B = Matrix([1,-2,2]),
-C = Matrix([[-2,-1,1]]),
-U_t = [(t+1+cos(t))*gradino(t-2)])
+sistema_144  = Sistema(n=144,
+         A = Matrix([[2,0,0],[-3,0,1],[3,1,0]]),
+        B = Matrix([1,-2,2]),
+        C = Matrix([[-2,-1,1]]),
+        U_t = [(t+1+cos(t))*gradino(t-2)])
 
 sistema_145 = Sistema(n=145,		A = Matrix([[1,1],[-5,-1]]),
 		B = Matrix([0,1]),
 		C = Matrix([[0,1]]),
         X_0 = [Matrix([0,1])]
 )
+sistema_146 = Sistema(n=146,		A = Matrix([[1,0],[1,0]]),
+		B = Matrix([0,1]),
+		C = Matrix([[0,1]]),
+        X_0 = [Matrix([0,1])]
+)
+sistema_147 = Sistema(n=147,
+		A = Matrix([[0,1],[0,-1]]),
+		B = Matrix([0,1]),
+		C = Matrix([[1,0],[1,2]])
+)
+sistema_148 = Sistema(n=148,
+		A = Matrix([[0,0],[1,-2]]),
+		B = Matrix([[2,0],[1,1]]),
+		C = Matrix([[0,1]])
+)
+sistema_149  = Sistema(n=149,
+         A = Matrix([[-1,-1,1],[0,0,-1],[0,1,0]]),
+        B = Matrix([0,1,1]),
+        C = Matrix([[0,0,1]]),
+        U_t = [(t)*gradino(t-1),(t-1)*gradino(t-1),(t)*gradino(t)])
 
 
 sistemi = {
@@ -78,5 +99,10 @@ sistemi = {
     122:sistema_122,
     133:sistema_133,
     144 : sistema_144,
-    145 : sistema_145
+    145 : sistema_145,
+    146: sistema_146,
+    147: sistema_147,
+    148: sistema_148,
+    149: sistema_149
+
 }

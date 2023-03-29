@@ -178,7 +178,7 @@ def funzioneTrasferimento(A:Matrix,B:Matrix,C:Matrix,D:Matrix,X_0,U_t,W=None):
 	graficiN = graficiNyquist(W_num,P_d)
 	out += graficiN
 	out +="\n\subsubsection{Vediamo le risposte:}"
-	'''
+	
 	for u_t in tqdm(U_t):
 		u_s = L(u_t)
 		out += "\n\[ u(t) = %s \\to U(s) = \mathcal{L}[u(t)] = %s \]"%(l(u_t),l(u_s))
@@ -200,7 +200,7 @@ def funzioneTrasferimento(A:Matrix,B:Matrix,C:Matrix,D:Matrix,X_0,U_t,W=None):
 			out += "\n\[ y(s) = y_L(s) + y_F(s) = %s \]"%l(y_s)
 			y_t	= invL(y_s)
 			out += "\n\[ y(t) = \mathcal{L}^{-1}[y(s)] = %s \]"%l(y_t)
-	'''
+	
 
 
 	return out,[W_num,P_d]

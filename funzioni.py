@@ -42,7 +42,7 @@ def crea_esercizio(num,test):
 
 
 	if num in sistemi:
-		A,B,C,D,x_0,u_t = sistemi[num].get_dati()
+		A,B,C,D,u_t,x_0 = sistemi[num].get_dati()
 
 
 	print("\tStudio tempo continuo")

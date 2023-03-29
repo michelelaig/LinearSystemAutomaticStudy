@@ -13,7 +13,7 @@ valori_t_diff = ['0','1','t_0']
 val_lim = ['0','+\\infty','-\\infty']
 
 array_test = [77,88,99,111,122,133]
-array_test = [145]
+array_test = [149]
 test = False
 def compila_documento(tipo):
 	stringone = ''
@@ -30,8 +30,8 @@ def compila_documento(tipo):
 		stringone+=st
 	elif tipo == "W":
 		k = -Rational(3,2)
-		Wn = Matrix([s*(s-10)**2])
-		Wd = ((s**2+1)**2)*((s-1)**3)
+		Wn = Matrix([1+s**2])
+		Wd = (s**2)*((1+s)**2)
 		W = [[Wn,Wd]]
 
 		st,a = funzioneTrasferimento(None,None,None,None,None,None,W =W)
@@ -59,7 +59,7 @@ if len(sys.argv)>1:
 	else:
 		num_esercizi = int(sys.argv[1])
 else:
-	tipo = "test"	
+	tipo = "W"	
 	flag_compila=True
 
 if len(sys.argv)==3:
