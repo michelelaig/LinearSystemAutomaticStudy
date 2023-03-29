@@ -38,15 +38,15 @@ def stringa_oss(A11,A22):
 	return out
 
 def studioOsservabilita(A,C):
-	out="\nStudiamone l’osservabilità. Calcoliamo allora $O$ e troviamo $I = ker(O)$:\n"
+	out="\nStudiamone l'osservabilità. Calcoliamo allora $O$ e troviamo $\mathfrak{I} = \\text{ker}(O)$:\n"
 	
 	O = crea_O(C,A)
 	det = 999 if O.cols-O.rows else O.det()
 
 	out += "\[\n O = \\begin{pmatrix}C \\\\ ... \\\\ CA^{n-1}  \end{pmatrix} = %s, |O| = %s \]\n"%(l(O),det)
 
-	if det:
-		return out+"Eccezione 1: O ha rango pieno quindi finisco qui.\n",[]
+	if O.rank()==O.cols:#era con le righe
+		return out+"$O$ ha rango pieno quindi finisco qui.\n",[]
 	
 	rango = O.rank()
 	m = O.rows-rango
@@ -59,11 +59,11 @@ def studioOsservabilita(A,C):
 
 	out +=str_I%(l(I))
 
-	'''
+	
 	if not len(I):
-		out +="2"+str_no_inoss
+		out +="Eccezione 2: I è vuota"
 		return out,I
-	'''
+	
 
 
 
