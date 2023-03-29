@@ -3,10 +3,7 @@ from aux import sempl_span
 from sympy import Matrix
 from sympy import pprint
 ###Stringhe studio Osservabilità
-str_sist = "Il sistema è \[ \\begin{cases} \overset{\cdot}{x}= %s x+ %s u\\\\y = %s x\end{cases}\]\n"
-str_1 = "\nStudiamone l’osservabilità. Calcoliamo allora O e troviamo I = ker(O):\n"
-str_2 = "\[\n O = \\begin{pmatrix}C \\\\ CA \\\\ CA^2 \end{pmatrix} = %s, |O| = %s \]\n"
-str_no_inoss = "O ha rango pieno quindi finisco qui.\n"
+
 str_rango = "\nO ha rango $ %s $ quindi il suo nucleo ha dimensione $ %s $.\n"
 str_I =		"\nCalcolando trovo \[ \nI = ker(O) = %s\]\n"
 str_T_inv=	"\nE $T^{-1}$ viene \[ \nT^{-1} = %s \]\n"
@@ -17,13 +14,11 @@ equaz4 =	"\[ \n%s = %s = %s = %s \]\n"
 equaz5 =	"\[ \n%s = %s = %s = %s = %s \]\n"
 
 
-def crea_O(C,A):
-	if A.rows==4:
-		O = append_down(C,[C*A,C*A*A,C*A*A*A])
-	if A.rows==3:
-		O = append_down(C,[C*A,C*A*A])
-	if A.rows==2:
-		O = append_down(C,[C*A])
+def crea_O(C:Matrix,A:Matrix):
+	O = C	
+	for i in range(1,A.rows):
+		O = O.col_join(C*(A**i))
+
 	return O 
 
 
@@ -42,22 +37,16 @@ def stringa_oss(A11,A22):
 	out = "Quindi infine mi viene che gli autovalori osservabili sono $ %s $ e gli inosservabili sono $ %s $.\n"%(oss,inoss)
 	return out
 
-
-
-
-	
-		
-
 def studioOsservabilita(A,C):
-	out=str_1
+	out="\nStudiamone l’osservabilità. Calcoliamo allora $O$ e troviamo $I = ker(O)$:\n"
+	
 	O = crea_O(C,A)
-	if O.cols == O.rows:
-		out+=str_2%(l(O),l(O.det()))
-	else:
-		out+=str_2%(l(O),l(999))
-	if O.rank()==O.rows:
-		out += "Eccezione 1: "+str_no_inoss
-		return out,[]
+	det = 999 if O.cols-O.rows else O.det()
+
+	out += "\[\n O = \\begin{pmatrix}C \\\\ ... \\\\ CA^{n-1}  \end{pmatrix} = %s, |O| = %s \]\n"%(l(O),det)
+
+	if det:
+		return out+"Eccezione 1: O ha rango pieno quindi finisco qui.\n",[]
 	
 	rango = O.rank()
 	m = O.rows-rango
@@ -69,10 +58,12 @@ def studioOsservabilita(A,C):
 
 
 	out +=str_I%(l(I))
+
+	'''
 	if not len(I):
 		out +="2"+str_no_inoss
 		return out,I
-
+	'''
 
 
 
