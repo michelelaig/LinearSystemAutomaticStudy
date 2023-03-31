@@ -90,6 +90,13 @@ sistema_149  = Sistema(n=149,
         C = Matrix([[0,0,1]]),
         U_t = [(t)*gradino(t-1),(t-1)*gradino(t-1),(t)*gradino(t)])
 
+sistema_150  = Sistema(n=150,
+         A = Matrix([[-2,0,0],[3,0,1],[0,1,0]]),
+        B = Matrix([0,1,1]),
+        C = Matrix([[0,0,1]]),
+        U_t = [(t)*gradino(t-1),(t-1)*gradino(t-1),(t)*gradino(t)])
+
+
 
 sistemi = {
     77 : sistema_77,

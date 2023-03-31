@@ -29,9 +29,9 @@ def compila_documento(tipo):
 		st,a,b= realizzazione(W)
 		stringone+=st
 	elif tipo == "W":
-		k = -Rational(3,2)
-		Wn = Matrix([1+s**2])
-		Wd = (s**2)*((1+s)**2)
+		k = Rational(1,10)
+		Wn = Matrix([1-s])
+		Wd = (1+k*s)*((1+s)**2)
 		W = [[Wn,Wd]]
 
 		st,a = funzioneTrasferimento(None,None,None,None,None,None,W =W)
