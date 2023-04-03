@@ -3,18 +3,18 @@ from sympy.abc import t
 from aux import gradino
 
 class Sistema():
-    def __init__(self,n:int = 0,A:Matrix = None,B : Matrix = None, C : Matrix = None, D : Matrix = None,
-    U_t = [],X_0 = []):
+    def __init__(self, n:int = 0, A:Matrix = None, B : Matrix = None, C : Matrix = None, D : Matrix = None, U_t=None, X_0=None):
+        if U_t is None:
+            U_t = []
+        if X_0 is None:
+            X_0 = []
         self.n = n
         self.A = A
         self.B = B
         self.C = C
         self.U_t = U_t
         self.X_0 = X_0
-        if D:
-            self.D = D
-        else:
-            self.D = C*A*B-C*A*B
+        self.D = D or C*A*B-C*A*B
     def __repr__(self):
         return f"S{self.n}: A={self.A} B={self.B} C={self.C} D={self.D}"
     def get_matrici(self):

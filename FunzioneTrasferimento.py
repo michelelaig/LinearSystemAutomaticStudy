@@ -47,7 +47,7 @@ def graficiNyquistUniDim(num,den):
 	#nyquist = conNyquistPlot(tfc)
 	#nyquist.savefig('./figures/nyquist_%d.png'%(randid))
 	#print(str(num))
-	tfc = expr("(%s)/(%s)"%(str(num),str(den)))
+	tfc = expr(f"({str(num)})/({str(den)})")
 	tfc.nyquist_plot()
 	plt.savefig("./figures/nyquist_%d.png"%(randid))
 
@@ -76,10 +76,7 @@ def f_l(N,D):
 
 
 def strap_type(l):
-	out = []
-	for i in l:
-		out.append(float(i))
-	return out
+	return [float(i) for i in l]
 
 
 
@@ -111,15 +108,12 @@ def invLaplace(y_s):
 		tmp1 = ""
 		ar=[]
 		for y in y_s.apart().args:
-			tmp = l(y)+"+"
-			tmp1 += l(invL(y))+"+"
+			tmp = f"{l(y)}+"
+			tmp1 += f"{l(invL(y))}+"
 			ar.append(invL(y))
 		tmp1 = tmp1[::-1]
 		tmp = tmp[::-1]
-		y_t = 0
-		for ys in ar:
-			y_t+=ys
-			
+		y_t = sum(ar)
 		return out%(tmp,tmp1,l(y_t))
 	return "\n\[ y(t) = \mathcal{L}^{-1}[y(s)] = %s \]"%invL(y_s)
 

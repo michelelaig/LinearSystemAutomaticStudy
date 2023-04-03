@@ -22,14 +22,10 @@ tipi_prim = [int,float,numbers.One,numbers.Zero,Rational,Integer,numbers.Negativ
 
 def discretizza(ydFn_str):
 	e = expr(ydFn_str)
-	if e==0:
-		return 0
-	return e.discrete_time()
+	return 0 if e==0 else e.discrete_time()
 
 def trasforma_in_Zeta(yFn):
-	if type(yFn) is int and yFn == 0:
-		return 0
-	return yFn.ZT()
+	return 0 if type(yFn) is int and yFn == 0 else yFn.ZT()
 
 def da_t_a_z(f):
 	if f==0:
@@ -45,10 +41,7 @@ def da_t_a_z(f):
 
 
 def coeffs(f):
-	if type(f) in tipi_prim:
-		return [f]
-	else:
-		return f.as_poly().all_coeffs()
+	return [f] if type(f) in tipi_prim else f.as_poly().all_coeffs()
 
 def Chi4(dim,X):
 	#pprint(dim)
@@ -69,10 +62,7 @@ def shorter(espressione):
 		return espressione
 	e = espressione.expand()
 	f = espressione.simplify()
-	if len(str(e))<=len(str(f)):
-		return e
-	else:
-		return f
+	return e if len(str(e))<=len(str(f)) else f
 
 
 
@@ -94,10 +84,8 @@ def l(s):
 
 
 def L(f):
-	if type(f)==Mul:
-		#print(type(f.args[0]))
-		if type(f.args[0]) in tipi_prim:	
-			return f.args[0]* laplace_transform(f/f.args[0], t, s, noconds=True)
+	if type(f) == Mul and type(f.args[0]) in tipi_prim:
+		return f.args[0]* laplace_transform(f/f.args[0], t, s, noconds=True)
 	return laplace_transform(f, t, s, noconds=True)	
 
 
@@ -105,9 +93,7 @@ def L(f):
 
 
 def invL(F):
-	out = inverse_laplace_transform(F,s,t)
-	#print(out)
-	return out
+	return inverse_laplace_transform(F,s,t)
 
 
 
@@ -136,21 +122,19 @@ def Zassenhaus(s1,s2):
 	s1m = Matr_colonne(s1)
 	s2m = Matr_colonne(s2)
 
-	tmp = s2m.T.row_join(Matrix([[0 for i in range(s2m.cols)] for j in range(s2m.rows)]).T)
+	tmp = s2m.T.row_join(
+		Matrix([[0 for _ in range(s2m.cols)] for _ in range(s2m.rows)]).T
+	)
 	tmp = s1m.T.row_join(s1m.T).col_join(tmp).echelon_form()
 	#pprint(tmp)
 	#pprint(tmp.T.columnspace())
 	out = []
 	for v in tmp.T.columnspace():
-		flag_int = True
-		for x in range(s1m.rows):
-			if v[x]!=0:
-				flag_int = False
+		flag_int = all(v[x] == 0 for x in range(s1m.rows))
 		if flag_int:
 			#print(v)
 			out.append(Matrix(v[s1m.rows::]))
-	out = sempl_span(out)
-	return out
+	return sempl_span(out)
 
 def intersezione_spazi_vettoriali(I, R):
 	return Matr_colonne(Zassenhaus(I,R))
@@ -189,11 +173,7 @@ def torna_ao(D):
 	return [a,o]
 
 def vecreale(v):
-	for el in v:
-		#print(el)
-		if im(el)!=0:
-			return False
-	return True
+	return all(im(el) == 0 for el in v)
 
 def str_autovec_r(vec_r) -> str:
 	#pprint(vec_r)
@@ -212,9 +192,9 @@ def str_autovec_r(vec_r) -> str:
 		#DATESTARE
 		if vec_r[v][0] != 1:
 			s = ", ".join(l(vmult) for vmult in vec_r[v][1])
-			out += "%s: (%s)" % (l(v), s)
+			out += f"{l(v)}: ({s})"
 		else:
-			out += "%s: %s" % (l(v), l(vec_r[v][1][0]))
+			out += f"{l(v)}: {l(vec_r[v][1][0])}"
 	return out
 
 def EDT(D:Matrix,dim,vecs_r,ao)->Matrix:
@@ -234,9 +214,11 @@ def EDT(D:Matrix,dim,vecs_r,ao)->Matrix:
 
 
 
-def crea_T_inv_Chi(X1:Matrix,X2:Matrix,X3:Matrix,X4:Matrix)->Matrix:
-	tmp = add_columns(Matrix(),X1.columnspace()+X2.columnspace()+X3.columnspace()+X4.columnspace())
-	return tmp
+def crea_T_inv_Chi(X1:Matrix,X2:Matrix,X3:Matrix,X4:Matrix) -> Matrix:
+	return add_columns(
+		Matrix(),
+		X1.columnspace() + X2.columnspace() + X3.columnspace() + X4.columnspace(),
+	)
 
 def crea_T_inv(I,n):
 	#Per ora metto quelli che so essere lin indip per come è fatta la matrice

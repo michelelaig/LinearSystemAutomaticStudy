@@ -20,20 +20,15 @@ equaz4 =	"\[ %s = %s = %s = %s \]"
 def crea_R(A,B):
 	R= B
 	tmp = B
-	for i in range(A.cols-1):
+	for _ in range(A.cols-1):
 		tmp = A*tmp
 		R = add_columns(R,[tmp])
 	return R
 
 def stringa_ragg(A11,A22):
-	ragg = ""
-	for val in A11.eigenvals():
-		ragg+=l(val)+ ", "
-	irrag = ""
-	for val in A22.eigenvals():
-		irrag+=l(val)+", "
-	out = "Quindi infine mi viene che gli autovalori ragg sono $ %s $ e gli irrag sono $ %s $"%(ragg,irrag)
-	return out
+	ragg = "".join(f"{l(val)}, " for val in A11.eigenvals())
+	irrag = "".join(f"{l(val)}, " for val in A22.eigenvals())
+	return f"Quindi infine mi viene che gli autovalori ragg sono $ {ragg} $ e gli irrag sono $ {irrag} $"
 
 def studioRaggiungibilita(A,B):
 	out =""

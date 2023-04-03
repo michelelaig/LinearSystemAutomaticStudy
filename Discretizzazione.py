@@ -25,17 +25,13 @@ s7 = "Infine moltiplico per $\\frac{z-1}{z}$ per ottenere $W(z)$: \n\[ W(z) = %s
 
 def discretizza(ydFn_str):
 	e = expr(ydFn_str)
-	if e==0:
-		return 0
-	return e.discrete_time()
+	return 0 if e==0 else e.discrete_time()
 
 def trasforma_in_Zeta(yFn):
 	print(yFn)
 	print(type(yFn))
 	print(type(yFn) is int)
-	if type(yFn) is int and yFn == 0:
-		return 0
-	return yFn.ZT()
+	return 0 if type(yFn) is int and yFn == 0 else yFn.ZT()
 
 
 def discretizzazioneDaW(W):

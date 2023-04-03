@@ -51,54 +51,46 @@ def autocose(A : Matrix):
 			vecs_i[v[0]] = [v[1],v[2]]
 
 	vals_i.reverse()#Per mettere prima l'autovalore con im(lambda)>0
-	vecs_t = {}
-	for v in vals_i:
-		vecs_t[v] = [vecs_i[v][0],vecs_i[v][1]]
+	vecs_t = {v: [vecs_i[v][0],vecs_i[v][1]] for v in vals_i}
 	vecs_i = vecs_t
-	#return vals_r,vals_i,vecs_r.keys(),vecs_i
-	#for v in vecs_r:
-		#if v[0]==1:
-			
 	return list(vecs_r.keys()),vals_i,vecs_r,vecs_i
 
 def generaU(A,dim,vecs_r,vecs_i):
 	#Ritorna la matrice degli autovettori sinistri e alpha, omega se ci sono
-	if len(vecs_i) and A.cols<4:
-		#pprint(vecs_i)
-		U = Matrix()
-		for v in vecs_r:
-			U = add_columns(U,vecs_r[v][1])
-		n_vecs_r = U.cols
-		i = n_vecs_r
-		uab = []
-		if n_vecs_r!=dim:
-			uab = vecs_ab(vecs_i)
-			if not len(uab):
-				return "ERRORE NON GESTITO",[]
-			for v in uab:
-				U = U.col_insert(i,v)
-				i+=1
-		return U,uab
-	#Caso in cui non ci sono vettori complessi, sympy mi trova direttamente la matrice di
-	#trasformazione
-	return A.jordan_form()[0],[]
+	if not len(vecs_i) or A.cols >= 4:
+		#Caso in cui non ci sono vettori complessi, sympy mi trova direttamente la matrice di
+		#trasformazione
+		return A.jordan_form()[0],[]
+	#pprint(vecs_i)
+	U = Matrix()
+	for v in vecs_r:
+		U = add_columns(U,vecs_r[v][1])
+	n_vecs_r = U.cols
+	i = n_vecs_r
+	uab = []
+	if i != dim:
+		uab = vecs_ab(vecs_i)
+		if not len(uab):
+			return "ERRORE NON GESTITO",[]
+		for v in uab:
+			U = U.col_insert(i,v)
+			i+=1
+	return U,uab
 
 def stringa_autovalori_complessi(vals_i):
 	#se ci sono autovalori complessi ritorna la lista latexizzata, altrimenti il fine riga
-	if len(vals_i):
-		return autva_c%l(vals_i)
-	return ".\n"
+	return autva_c%l(vals_i) if len(vals_i) else ".\n"
 
 def stringa_autovettori_complessi(uab):
 	#se ci sono autovecs complessi ritorna la lista latexizzata, altrimenti nulla.
-	if len(uab):
-		return autve_c%(l(uab[0]),l(uab[1]))
-	return ".\n"
+	return autve_c%(l(uab[0]),l(uab[1])) if len(uab) else ".\n"
 
 def stringa_procedimento_Jordan(A):
-	if not A.is_diagonalizable():
-		return "La matrice $A$ non è diagonalizzabile, quindi devo fare Jordan.\n"
-	return ""
+	return (
+		""
+		if A.is_diagonalizable()
+		else "La matrice $A$ non è diagonalizzabile, quindi devo fare Jordan.\n"
+	)
 
 
 

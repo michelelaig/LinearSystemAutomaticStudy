@@ -23,10 +23,7 @@ def check_int(M):
 
 
 def crea_T_inv(X1,X2,X3,X4):
-	if len(X1) == 0 :
-		M = Matrix()
-	else:
-		M = add_columns(X1[0],X1[0::])
+	M = Matrix() if len(X1) == 0 else add_columns(X1[0], X1[:])
 	M = add_columns(M,X2)
 	M = add_columns(M,X3)
 	M = add_columns(M,X4)

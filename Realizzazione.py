@@ -8,34 +8,31 @@ from sympy.abc import s
 
 def vettore(n):
 	out = Matrix()
-	for i in range(n):
+	for _ in range(n):
 		out = out.row_insert(out.rows,Matrix([0]))
 	return out
 
 def riga(n):
 	out = Matrix()
-	for i in range(n):
+	for _ in range(n):
 		out = out.col_insert(out.cols,Matrix([0]))
 	return out
 
 def coefficienti_bene(Nw_,Dw_):
 	Nw = []
-	Dw = []
 	#print(len(Nw_))
 	#print(len(Dw_))
 	if len(Nw_)<len(Dw_)-1:
 		#print("ok")
-		for b in range(len(Dw_)-len(Nw_)-1):
+		for _ in range(len(Dw_)-len(Nw_)-1):
 			#print("b")
 			Nw = [0]+Nw
-			#print(Nw)
 	if Dw_[0]!=1:
 		tmp = Dw_[0]
 		for el in Nw_:
 			Nw.append(el*tmp)
 			#print(Nw)
-		for el in Dw_:
-			Dw.append(Rational(el,tmp))
+		Dw = [Rational(el,tmp) for el in Dw_]
 		return Nw,Dw
 	return Nw+Nw_,Dw_
 
@@ -46,9 +43,7 @@ def A_can_ragg(Dw):
 	A.col_del(n-1)
 	A = v1.row_join(A)
 	A=A.tolist()
-	bs = []
-	for b in Dw[::-1][0:-1]:
-		bs.append(-b)
+	bs = [-b for b in Dw[::-1][:-1]]
 	A[n-1]=bs
 
 	return Matrix(A)

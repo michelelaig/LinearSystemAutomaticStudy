@@ -28,14 +28,12 @@ def crea_O(C:Matrix,A:Matrix):
 	
 
 def stringa_oss(A11,A22):
-	oss = ""
-	inoss = ""
-	for val in A11.eigenvals():
-		inoss+=l(val)+ "\ "
-	for val in A22.eigenvals():
-		oss+=l(val)+"\ "
-	out = "Quindi infine mi viene che gli autovalori osservabili sono $ %s $ e gli inosservabili sono $ %s $.\n"%(oss,inoss)
-	return out
+	inoss = "".join(l(val)+ "\ " for val in A11.eigenvals())
+	oss = "".join(l(val)+"\ " for val in A22.eigenvals())
+	return (
+		"Quindi infine mi viene che gli autovalori osservabili sono $ %s $ e gli inosservabili sono $ %s $.\n"
+		% (oss, inoss)
+	)
 
 def studioOsservabilita(A,C):
 	out="\nStudiamone l'osservabilità. Calcoliamo allora $O$ e troviamo $\mathfrak{I} = \\text{ker}(O)$:\n"

@@ -70,23 +70,19 @@ NOME_OUT = "esercizio"
 
 
 
-t= open(NOME_TEMP,"r")
-template = t.read()
-t.close()
-
+with open(NOME_TEMP,"r") as t:
+	template = t.read()
 stringone = compila_documento(tipo)
 
 template = template.replace('ESERCIZI',stringone)
 
-t_out = open(NOME_OUT+'.tex',"w")
-t_out.write(template)
-t_out.close()
-
+with open(f'{NOME_OUT}.tex', "w") as t_out:
+	t_out.write(template)
 print()
-if flag_compila :
+if flag_compila:
 	#subprocess.run(["pdflatex",NOME_OUT],stdout=subprocess.DEVNULL)
 	subprocess.run(["pdflatex",NOME_OUT])
-	subprocess.run(["rm",NOME_OUT+'.aux'])
-	subprocess.run(["rm",NOME_OUT+'.log'])
-	subprocess.run(["rm",NOME_OUT+'.toc'])
-	subprocess.run(["rm",NOME_OUT+'.out'])
+	subprocess.run(["rm", f'{NOME_OUT}.aux'])
+	subprocess.run(["rm", f'{NOME_OUT}.log'])
+	subprocess.run(["rm", f'{NOME_OUT}.toc'])
+	subprocess.run(["rm", f'{NOME_OUT}.out'])
