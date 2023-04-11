@@ -48,25 +48,27 @@ def crea_esercizio(num,test):
 	print("\tStudio tempo continuo")
 	out = "Studiare il sistema \[S:\\begin{cases}\overset{\cdot}{x} = %s x+ %su\\\\y = %s x +%s u\end{cases}\]"%(l(A),l(B),l(C),l(D))
 	out +="\subsection{Studio Risposta Libera}\n"
+	
 	s, Xl_flag = studioTempoContinuo(A,B,C,D,x_0,u_t,test)
 	out += s
 	if not Xl_flag:
 		return out
+	'''
 	if A.rows>1:
 		print("\tStudio Osservabilità")
 		out +="\n\subsection{Studio Osservabilità}\n"
 		s, I = studioOsservabilita(A,C)
 		out += s
-		
+
 		print("\tStudio Raggiungibilità")
 		out +="\n\subsection{Studio Raggiungibilità}\n"
 		s, R_ = studioRaggiungibilita(A,B)
 		out += s
+
 		print("\tScomposizione di Kalman")
 		out +="\n\subsection{Scomposizione di Kalman}\n"
 		out += scomposizioneKalman(A,B,C,I,R_,test)
-	
-	
+	'''
 	print("\tStudio in Laplace")
 	out +="\n\subsection{Studio Funzione di trasferimento}\n"
 	s,W = funzioneTrasferimento(A,B,C,D,x_0,u_t)

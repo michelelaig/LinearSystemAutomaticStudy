@@ -43,7 +43,7 @@ def studioRaggiungibilita(A,B):
 	if rango==0:
 		out+= str_R_rango_0
 	R_ = R.columnspace()
-	R_ = sempl_span(R_)
+	#R_ = sempl_span(R_)
 	out += R_rango%(l(rango),l(R_))
 	out += R__str +R__str_1
 	

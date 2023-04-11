@@ -47,6 +47,7 @@ def graficiNyquistUniDim(num,den):
 	#nyquist = conNyquistPlot(tfc)
 	#nyquist.savefig('./figures/nyquist_%d.png'%(randid))
 	#print(str(num))
+
 	tfc = expr(f"({str(num)})/({str(den)})")
 	tfc.nyquist_plot()
 	plt.savefig("./figures/nyquist_%d.png"%(randid))
@@ -163,14 +164,17 @@ def funzioneTrasferimento(A:Matrix,B:Matrix,C:Matrix,D:Matrix,X_0,U_t,W=None):
 	
 	#W_num = Matrix([s-10])
 	#P_d = (s**2+3*s+2)*(s**2+1)
-
+	H_s = f"\[ H(s) = {l(Phi_num)}\cdot {f_l(B,P_d)} = {f_l(H_num,P_d)} \]"
+	out += H_s
+	Psi_s = f"\[ \Psi(s) = {f_l(C,P_d)}\cdot{l(Phi_num)}  = {f_l(Psi_num,P_d)} \]"
+	out += Psi_s
 	out+= funz_caratt_2%(f_l(H_num,P_d),f_l(Psi_num,P_d),f_l(W_num,P_d),l(simplify(W_num/P_d)))
 	graficiB = graficiBode(W_num,P_d)
 	out += graficiB
 
 	plt.figure(1,clear=True)
-	graficiN = graficiNyquist(W_num,P_d)
-	out += graficiN
+	#graficiN = graficiNyquist(W_num,P_d)
+	#out += graficiN
 	out +="\n\subsubsection{Vediamo le risposte:}"
 	
 	for u_t in tqdm(U_t):

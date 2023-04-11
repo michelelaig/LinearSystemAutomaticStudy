@@ -50,7 +50,7 @@ def studioOsservabilita(A,C):
 	m = O.rows-rango
 	out += str_rango%(l(rango),l(m))
 	I = O.nullspace()
-	I = sempl_span(I)
+	#I = sempl_span(I)
 
 
 

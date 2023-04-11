@@ -38,13 +38,55 @@
 
 \section{Esercizi}
 
-\subsection{$ 1 - s $}
-Il grafico di bode è:
-\[ W(s) = \frac{1 - s}{\frac{\left(s + 1\right)^{2} \left(s + 10\right)}{10}} \]\includegraphics[scale = 0.5]{figures/bode_3232517.png}
+\section{Esercizio 157 }
+ Studiare il sistema \[S:\begin{cases}\overset{\cdot}{x} = \left(\begin{matrix}-1 & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\end{matrix}\right) x+ \left(\begin{matrix}0 & 0\\1 & 0\\0 & 0\\0 & 1\end{matrix}\right)u\\y = \left(\begin{matrix}0 & 1 & 1 & 0\\0 & 0 & 1 & 0\end{matrix}\right) x +\left(\begin{matrix}0 & 0\\1 & 0\end{matrix}\right) u\end{cases}\]\subsection{Studio Risposta Libera}
+Si studi la risposta libera di un sistema che ha le seguenti caratteristiche: \[A = \left(\begin{matrix}-1 & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\end{matrix}\right)\]
+Il determinante di $A-\lambda$ è $ - \lambda^{3} \left(- \lambda - 1\right) $.
+
+Gli autovalori reali sono $\lambda_i = [-1, 0]$.
+
+Gli autovettori associati ai reali sono $ u_i: [  -1: \left(\begin{matrix}1\\0\\0\\0\end{matrix}\right)0: (\left(\begin{matrix}0\\1\\0\\0\end{matrix}\right), \left(\begin{matrix}0\\0\\1\\0\end{matrix}\right)) ]$
+.
+La matrice $A$ non è diagonalizzabile, quindi devo fare Jordan.
+
+Da cui posso ricavare le matrici \[U=T^{-1} = \left(\begin{matrix}1 & 0 & 0 & 0\\0 & 0 & 0 & 1\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\end{matrix}\right), V = T = \left(\begin{matrix}1 & 0 & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 1\\0 & 1 & 0 & 0\end{matrix}\right)\]
+Che mi trasformano la matrice in \[ D = TAT^{-1} = \left(\begin{matrix}-1 & 0 & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right) \]
+Da cui posso ricavare: \[ \Phi(t) = e^{At} = T^{-1} e^{Dt} T =  T^{-1} \left(\begin{matrix}e^{- t} & 0 & 0 & 0\\0 & 1 & t & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 1\end{matrix}\right) T\]
+
+\[ = \left(\begin{matrix}e^{- t} & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & 1 & t\\0 & 0 & 0 & 1\end{matrix}\right) \]\[ \Psi(t) = \left(\begin{matrix}0 & 1 & 1 & t\\0 & 0 & 1 & t\end{matrix}\right), H(t) =  \left(\begin{matrix}0 & 0\\1 & 0\\0 & t\\0 & 1\end{matrix}\right),W(t) = \left(\begin{matrix}1 & t\\1 & t\end{matrix}\right)\]\subsubsection{Osservabilità}
+ I modi naturali osservabili sono quelli tali che 
+\[ C \cdot u_i   \neq 0\]
+\subsubsection{Eccitabilità}
+ I modi naturali eccitabili sono quelli tali che 
+\[v_i' \cdot B \neq 0\]
+
+\subsection{Studio Funzione di trasferimento}
+
+\[ (sI-A) = \left(\begin{matrix}s + 1 & 0 & 0 & 0\\0 & s & 0 & 0\\0 & 0 & s & -1\\0 & 0 & 0 & s\end{matrix}\right), |sI-A| = s^{3} \left(s + 1\right) \]
+\[ \Phi(s) = (sI-A)^{-1} = \frac{\left(\begin{matrix}s^{3} & 0 & 0 & 0\\0 & s^{2} \left(s + 1\right) & 0 & 0\\0 & 0 & s^{2} \left(s + 1\right) & s \left(s + 1\right)\\0 & 0 & 0 & s^{2} \left(s + 1\right)\end{matrix}\right)}{s^{3} \left(s + 1\right)} \]
+
+Le funzioni caratteristiche sono \[\begin{array}{rcl}  H(s) & = & \Phi(s)B \\ \Psi(s) & = & C \Phi(s)\\ W(s) & = & C(sI-A)^{-1}B  \end{array} \]
+\[ H(s) = \left(\begin{matrix}s^{3} & 0 & 0 & 0\\0 & s^{2} \left(s + 1\right) & 0 & 0\\0 & 0 & s^{2} \left(s + 1\right) & s \left(s + 1\right)\\0 & 0 & 0 & s^{2} \left(s + 1\right)\end{matrix}\right)\cdot \frac{\left(\begin{matrix}0 & 0\\1 & 0\\0 & 0\\0 & 1\end{matrix}\right)}{s^{3} \left(s + 1\right)} = \frac{\left(\begin{matrix}0 & 0\\s^{2} \left(s + 1\right) & 0\\0 & s \left(s + 1\right)\\0 & s^{2} \left(s + 1\right)\end{matrix}\right)}{s^{3} \left(s + 1\right)} \]\[ \Psi(s) = \frac{\left(\begin{matrix}0 & 1 & 1 & 0\\0 & 0 & 1 & 0\end{matrix}\right)}{s^{3} \left(s + 1\right)}\cdot\left(\begin{matrix}s^{3} & 0 & 0 & 0\\0 & s^{2} \left(s + 1\right) & 0 & 0\\0 & 0 & s^{2} \left(s + 1\right) & s \left(s + 1\right)\\0 & 0 & 0 & s^{2} \left(s + 1\right)\end{matrix}\right)  = \frac{\left(\begin{matrix}0 & s^{2} \left(s + 1\right) & s^{2} \left(s + 1\right) & s \left(s + 1\right)\\0 & 0 & s^{2} \left(s + 1\right) & s \left(s + 1\right)\end{matrix}\right)}{s^{3} \left(s + 1\right)} \]
+e quindi \[ H(s)  =  \frac{\left(\begin{matrix}0 & 0\\s^{2} \left(s + 1\right) & 0\\0 & s \left(s + 1\right)\\0 & s^{2} \left(s + 1\right)\end{matrix}\right)}{s^{3} \left(s + 1\right)} \ \Psi(s) = \frac{\left(\begin{matrix}0 & s^{2} \left(s + 1\right) & s^{2} \left(s + 1\right) & s \left(s + 1\right)\\0 & 0 & s^{2} \left(s + 1\right) & s \left(s + 1\right)\end{matrix}\right)}{s^{3} \left(s + 1\right)} \]
+\[ W(s)  =  \frac{\left(\begin{matrix}s^{2} \left(s + 1\right) & s \left(s + 1\right)\\s^{3} \left(s + 1\right) & s \left(s + 1\right)\end{matrix}\right)}{s^{3} \left(s + 1\right)} = \left(\begin{matrix}\frac{1}{s} & \frac{1}{s^{2}}\\1 & \frac{1}{s^{2}}\end{matrix}\right)  \] 
+Valore $ s^{2} \left(s + 1\right) $ della matrice delle funzioni di trasferimento:
+\[ W(s) = \frac{s^{2} \left(s + 1\right)}{s^{3} \left(s + 1\right)} \]\includegraphics[scale = 0.5]{figures/bode_7875577.png}
 
 
-Il grafico di Nyquist è:
-\includegraphics[scale = 0.5]{figures/nyquist_1017258.png}nel tempo continuo è \[ \frac{10 \left(\left(18 t - 11\right) e^{9 t} + 11\right) e^{- 10 t} \theta\left(t\right)}{81} \]
+Valore $ s \left(s + 1\right) $ della matrice delle funzioni di trasferimento:
+\[ W(s) = \frac{s \left(s + 1\right)}{s^{3} \left(s + 1\right)} \]\includegraphics[scale = 0.5]{figures/bode_8131886.png}
+
+
+Valore $ s^{3} \left(s + 1\right) $ della matrice delle funzioni di trasferimento:
+\[ W(s) = \frac{s^{3} \left(s + 1\right)}{s^{3} \left(s + 1\right)} \]\includegraphics[scale = 0.5]{figures/bode_2818649.png}
+
+
+Valore $ s \left(s + 1\right) $ della matrice delle funzioni di trasferimento:
+\[ W(s) = \frac{s \left(s + 1\right)}{s^{3} \left(s + 1\right)} \]\includegraphics[scale = 0.5]{figures/bode_1236601.png}
+
+
+\subsubsection{Vediamo le risposte:} 
+
 
 
 

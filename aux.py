@@ -2,7 +2,7 @@ from sympy import latex,im,Matrix,pprint,eye
 from sympy import E,cos,sin,Heaviside,DiracDelta,simplify
 
 from sympy.core import numbers,Rational,Integer,Mul
-from sympy.abc import t,s
+from sympy.abc import t,s,k
 from sympy.integrals import laplace_transform,inverse_laplace_transform
 
 
@@ -251,7 +251,7 @@ def mcd(v):
 			
 
 def sempl_span(I):
-	if not len(I):
+	if not len(I) or k in I:
 		return I
 	den = 1
 	for v in I:

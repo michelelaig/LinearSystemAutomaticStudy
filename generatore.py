@@ -13,7 +13,7 @@ valori_t_diff = ['0','1','t_0']
 val_lim = ['0','+\\infty','-\\infty']
 
 array_test = [77,88,99,111,122,133]
-array_test = [149]
+array_test = [157]
 test = False
 def compila_documento(tipo):
 	stringone = ''
@@ -23,15 +23,15 @@ def compila_documento(tipo):
 			print(i)
 			stringone += "\section{Esercizio %d }\n %s \n"%(i,crea_esercizio(i,True))
 	elif tipo == "real":
-		Wn = Matrix([s**2+3*s-4])
-		Wd = (s**2+100)*(10*s+1)
+		Wn = Matrix([s**2+1])
+		Wd = (s**2)*((s+1)**2)
 		W = [Wn,Wd]
 		st,a,b= realizzazione(W)
 		stringone+=st
 	elif tipo == "W":
 		k = Rational(1,10)
-		Wn = Matrix([1-s])
-		Wd = (1+k*s)*((1+s)**2)
+		Wn = Matrix([s**2+1])
+		Wd = (s**2)*((s+1)**2)
 		W = [[Wn,Wd]]
 
 		st,a = funzioneTrasferimento(None,None,None,None,None,None,W =W)
@@ -59,7 +59,7 @@ if len(sys.argv)>1:
 	else:
 		num_esercizi = int(sys.argv[1])
 else:
-	tipo = "W"	
+	tipo = "test"	
 	flag_compila=True
 
 if len(sys.argv)==3:

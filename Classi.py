@@ -1,5 +1,5 @@
-from sympy import Matrix,cos
-from sympy.abc import t
+from sympy import Matrix,cos,E
+from sympy.abc import t,k
 from aux import gradino
 
 class Sistema():
@@ -90,11 +90,59 @@ sistema_149  = Sistema(n=149,
         C = Matrix([[0,0,1]]),
         U_t = [(t)*gradino(t-1),(t-1)*gradino(t-1),(t)*gradino(t)])
 
+
 sistema_150  = Sistema(n=150,
          A = Matrix([[-2,0,0],[3,0,1],[0,1,0]]),
         B = Matrix([0,1,1]),
         C = Matrix([[0,0,1]]),
         U_t = [(t)*gradino(t-1),(t-1)*gradino(t-1),(t)*gradino(t)])
+sistema_151  = Sistema(n=151,
+         A = Matrix([[3,-4,-4],[2,-3,-2],[0,0,-1]]),
+        B = Matrix([1,1,0]),
+        C = Matrix([[-1,2,1]]),
+        D = Matrix([[1]]),
+        U_t = [(t-1)*gradino(t)- t*gradino(t-1)]
+        )
+sistema_152= Sistema(n=152,
+		A = Matrix([[1,1],[-5,-1]]),
+		B = Matrix([0,1]),
+		C = Matrix([[0,1]]),
+        U_t = [gradino(t),gradino(t-1)]
+)
+
+sistema_153  = Sistema(n=153,
+         A = Matrix([[-1,-3,1],[0,0,0],[0,-2,0]]),
+        B = Matrix([1,0,-2]),
+        C = Matrix([[1,2,-1]]),
+        U_t = [(t)*gradino(t-1),(t-1)*gradino(t-1),(t)*gradino(t),E**(2*t)*cos(t+2),2*t**2+1]
+)
+
+sistema_154  = Sistema(n=154,
+         A = Matrix([[-1,0],[0,0]]),
+        B = Matrix([0,1]),
+        C = Matrix([[0,1],[0,0]]),
+        D = Matrix([[0],[1]])
+)
+sistema_155  = Sistema(n=155,
+         A = Matrix([[0,1],[0,0]]),
+        B = Matrix([0,1]),
+        C = Matrix([[1,0],[1,0]])
+        
+        #,D = Matrix([[0],[1]])
+)
+sistema_156 = Sistema(n=156,
+    A = Matrix([[-1,0,0,1],[0,0,0,0],[0,0,0,0],[0,0,0,0]]),
+    B = Matrix([[0,0],[1,0],[0,0],[0,1]]),
+    C = Matrix([[0,1,0,1],[0,0,0,0]]),
+    D = Matrix([[0,0],[1,0]])
+    )
+
+sistema_157 = Sistema(n=157,
+    A = Matrix([[-1,0,0,0],[0,0,0,0],[0,0,0,1],[0,0,0,0]]),
+    B = Matrix([[0,0],[1,0],[0,0],[0,1]]),
+    C = Matrix([[0,1,1,0],[0,0,1,0]]),
+    D = Matrix([[0,0],[1,0]])
+    )
 
 
 
@@ -110,6 +158,13 @@ sistemi = {
     146: sistema_146,
     147: sistema_147,
     148: sistema_148,
-    149: sistema_149
+    149: sistema_149,
+    151 : sistema_151,
+    152 : sistema_152,
+    153 : sistema_153,
+    154: sistema_154,
+    155: sistema_155,
+    156 : sistema_156,
+    157 : sistema_157
 
 }

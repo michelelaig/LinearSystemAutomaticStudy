@@ -168,6 +168,12 @@ def studioTempoContinuo(A : Matrix,B: Matrix,C: Matrix,D_s: Matrix,X_0: Matrix,u
 		out += s
 		s,y_L = rispostaLibera(x_L,C)
 		out += s
+	Psi = C*eAt
+	H = eAt*B
+	W = (C*eAt*B)+D_s
+	out += f"\[ \Psi(t) = {l(Psi)}, H(t) =  {l(H)},W(t) = {l(W)}\]"
+
+
 
 	out+="\subsubsection{Osservabilità}\n I modi naturali osservabili sono quelli tali che \n\[ C \cdot u_i   \\neq 0\]\n"
 	out+="\subsubsection{Eccitabilità}\n I modi naturali eccitabili sono quelli tali che \n\[v_i' \cdot B \\neq 0\]\n"
