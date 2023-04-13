@@ -53,7 +53,7 @@ def crea_esercizio(num,test):
 	out += s
 	if not Xl_flag:
 		return out
-	'''
+	
 	if A.rows>1:
 		print("\tStudio Osservabilità")
 		out +="\n\subsection{Studio Osservabilità}\n"
@@ -68,7 +68,7 @@ def crea_esercizio(num,test):
 		print("\tScomposizione di Kalman")
 		out +="\n\subsection{Scomposizione di Kalman}\n"
 		out += scomposizioneKalman(A,B,C,I,R_,test)
-	'''
+	
 	print("\tStudio in Laplace")
 	out +="\n\subsection{Studio Funzione di trasferimento}\n"
 	s,W = funzioneTrasferimento(A,B,C,D,x_0,u_t)
