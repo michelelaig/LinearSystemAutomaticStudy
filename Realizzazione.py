@@ -171,5 +171,5 @@ def realizzazione(W):
 #W = [Matrix([s**2+1]),(s**2)*((s+1)**2)]
 #W = [Matrix([(s**2-1)]),((s+1)*(s**2+4*s+5))]
 #W = [Matrix([[s+1],[2]]),s*(s+1)]
-W = [Matrix([[s,0,1],[1,s+1,0]]),s**2+1]
-realizzazione(W)
+#W = [Matrix([[s,0,1],[1,s+1,0]]),s**2+1]
+#realizzazione(W)
