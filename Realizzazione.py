@@ -69,19 +69,53 @@ def better_can_ragg(q,p,matrici,Dw):
 	n = degree(Dw,s)
 	
 	l = []
+	for c in coeffs(Dw)[1::][::-1]:
+		l.append(eye(p)*(-c))
+	sotto = Matr_colonne(l)
+
+	l = []
 	for i in range(n-1):
-		l.append(Matr_colonne([eye(p) if j==i+1 else zeros(p,p) for j in range(n)]))
+		l_riga = []
+		for j in range(n):
+			if j==i+1:
+				l_riga.append(eye(p))
+			else:
+				l_riga.append(zeros(p,p))
+		l.append(Matr_colonne(l_riga))
+
 	sopra = Matr_righe(l)
-
-	sotto = Matr_colonne([eye(p)*(-c) for c in coeffs(Dw)[1::][::-1]])
-
 	Ar = Matr_righe([sopra,sotto])
+
 
 	Br = Matr_righe([zeros(p,p)*(n-1)]+[eye(p)])
 
 	Cr = Matr_colonne([matrici[i] for i in matrici])
 	return Ar,Br,Cr
 
+def better_can_oss(q,p,matrici,Dw):
+	n = degree(Dw,s)
+	l = []
+	for c in coeffs(Dw)[1::][::-1]:
+		l.append(eye(q)*(-c))
+	destra = Matr_righe(l)
+
+	l = []
+	for i in range(n-1):
+		l_col = []
+		for j in range(n):
+			if j==i+1:
+				l_col.append(eye(q))
+			else:
+				l_col.append(zeros(q,q))
+		l.append(Matr_righe(l_col))
+	sinistra = Matr_colonne(l)
+	Ao = Matr_colonne([sinistra,destra])
+	pprint(Ao)
+	Bo = Matr_righe([matrici[i] for i in matrici])
+	pprint(Bo)
+	Co = Matr_colonne([zeros(q,q)]+[eye(q)])
+	pprint(Co)
+	return Ao,Bo,Co
 
 
 def realizzazione(W):
@@ -119,7 +153,7 @@ def realizzazione(W):
 	Ar,Br,Cr = better_can_ragg(q,p,matrici,Dw)
 
 
-	#Ao,Bo,Co =  forma_can_oss(nw,dw)
+	Ao,Bo,Co =  better_can_oss(q,p,matrici,Dw)
 
 	out = "\[ W(s) = \\frac{%s}{%s} \]\n"%(l(Nw),l(Dw))
 	out+= "\subsubsection{Forma Canonica Raggiungibile}\n"
