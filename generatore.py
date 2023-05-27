@@ -23,9 +23,9 @@ def compila_documento(tipo):
 			print(i)
 			stringone += "\section{Esercizio %d }\n %s \n"%(i,crea_esercizio(i,True))
 	elif tipo == "real":
-		Wn = Matrix([s**2+1])
-		Wd = (s**2)*((s+1)**2)
-		W = [Wn,Wd]
+
+		W = [Matrix([[s,0,1],[1,s+1,0]]),s**2+1]
+
 		st,a,b= realizzazione(W)
 		stringone+=st
 	elif tipo == "W":
@@ -59,7 +59,7 @@ if len(sys.argv)>1:
 	else:
 		num_esercizi = int(sys.argv[1])
 else:
-	tipo = "test"	
+	tipo = "real"	
 	flag_compila=True
 
 if len(sys.argv)==3:
@@ -80,8 +80,8 @@ with open(f'{NOME_OUT}.tex', "w") as t_out:
 	t_out.write(template)
 print()
 if flag_compila:
-	#subprocess.run(["pdflatex",NOME_OUT],stdout=subprocess.DEVNULL)
-	subprocess.run(["pdflatex",NOME_OUT])
+	subprocess.run(["pdflatex",NOME_OUT],stdout=subprocess.DEVNULL)
+	#subprocess.run(["pdflatex",NOME_OUT])
 	subprocess.run(["rm", f'{NOME_OUT}.aux'])
 	subprocess.run(["rm", f'{NOME_OUT}.log'])
 	subprocess.run(["rm", f'{NOME_OUT}.toc'])
