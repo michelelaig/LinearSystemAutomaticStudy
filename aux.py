@@ -103,6 +103,12 @@ def Matr_colonne(l):
 		out = out.row_join(Matrix(v))
 	return out
 
+def Matr_righe(l):
+	out = Matrix()
+	for v in l:
+		out = out.col_join(Matrix(v))
+	return out
+
 def concatena_matrici_orizzontalmente(L):
 	# Inizializziamo una matrice vuota
 	result = Matrix()

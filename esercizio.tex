@@ -38,6 +38,7 @@
 
 \section{Esercizi}
 
+<<<<<<< HEAD
 \section{Esercizio 159 }
  Studiare il sistema \[S:\begin{cases}\overset{\cdot}{x} = \left(\begin{matrix}-2 & 1 & 1\\1 & -1 & 0\\1 & 0 & -1\end{matrix}\right) x+ \left(\begin{matrix}1\\0\\1\end{matrix}\right)u\\y = \left(\begin{matrix}1 & 0 & -1\end{matrix}\right) x +\left(\begin{matrix}0\end{matrix}\right) u\end{cases}\]\subsection{Studio Risposta Libera}
 Si studi la risposta libera di un sistema che ha le seguenti caratteristiche: \[A = \left(\begin{matrix}-2 & 1 & 1\\1 & -1 & 0\\1 & 0 & -1\end{matrix}\right)\]
@@ -126,6 +127,16 @@ Il grafico di bode è:
 
 \subsubsection{Vediamo le risposte:} 
 
+=======
+\[ W(s) = \frac{\left(\begin{matrix}s & 0 & 1\\1 & s + 1 & 0\end{matrix}\right)}{s^{2} + 1} \]
+\subsubsection{Forma Canonica Raggiungibile}
+Con la realizzazione cano ragg viene \[ A = \left(\begin{matrix}0 & 0 & 0 & 1 & 0 & 0\\0 & 0 & 0 & 0 & 1 & 0\\0 & 0 & 0 & 0 & 0 & 1\\-1 & 0 & 0 & 0 & 0 & 0\\0 & -1 & 0 & 0 & 0 & 0\\0 & 0 & -1 & 0 & 0 & 0\end{matrix}\right), B = \left(\begin{matrix}0 & 0 & 0\\0 & 0 & 0\\0 & 0 & 0\\1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{matrix}\right), C= \left(\begin{matrix}0 & 0 & 1 & 1 & 0 & 0\\1 & 1 & 0 & 0 & 1 & 0\end{matrix}\right) \]
+\[ W(s) = \left(\begin{matrix}- \frac{s}{- s^{2} - 1} & 0 & - \frac{1}{- s^{2} - 1}\\- \frac{1}{- s^{2} - 1} & - \frac{s}{- s^{2} - 1} - \frac{1}{- s^{2} - 1} & 0\end{matrix}\right) 
+\]\subsubsection{Forma Canonica Osservabile}
+Con la realizzazione cano oss viene \[ A = \left(\begin{matrix}0 & 0 & -1 & 0\\0 & 0 & 0 & -1\\1 & 0 & 0 & 0\\0 & 1 & 0 & 0\end{matrix}\right), B = \left(\begin{matrix}0 & 0 & 1\\1 & 1 & 0\\1 & 0 & 0\\0 & 1 & 0\end{matrix}\right), C= \left(\begin{matrix}0 & 0 & 1 & 0\\0 & 0 & 0 & 1\end{matrix}\right) \]
+\[ W(s) = \left(\begin{matrix}- \frac{s}{- s^{2} - 1} & 0 & - \frac{1}{- s^{2} - 1}\\- \frac{1}{- s^{2} - 1} & - \frac{s}{- s^{2} - 1} - \frac{1}{- s^{2} - 1} & 0\end{matrix}\right) 
+\]
+>>>>>>> 95b0261f2808742bbba5e06b3df79240c0eba472
 
 
 
