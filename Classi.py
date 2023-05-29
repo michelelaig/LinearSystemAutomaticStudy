@@ -143,6 +143,16 @@ sistema_157 = Sistema(n=157,
     C = Matrix([[0,1,1,0],[0,0,1,0]]),
     D = Matrix([[0,0],[1,0]])
     )
+sistema_158  = Sistema(n=158,
+        A = Matrix([[0,1,1],[0,-1,0],[0,0,-1]]),
+    B = Matrix([1,0,0]),
+    C = Matrix([[1,0,1]])
+    )
+sistema_159  = Sistema(n=159,
+        A = Matrix([[-2,1,1],[1,-1,0],[1,0,-1]]),
+    B = Matrix([1,0,1]),
+    C = Matrix([[1,0,-1]])
+    )
 
 
 
@@ -165,6 +175,8 @@ sistemi = {
     154: sistema_154,
     155: sistema_155,
     156 : sistema_156,
-    157 : sistema_157
+    157 : sistema_157,
+    158 : sistema_158,
+    159 : sistema_159
 
 }
