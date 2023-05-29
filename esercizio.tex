@@ -38,21 +38,21 @@
 
 \section{Esercizi}
 
-\section{Esercizio 158 }
- Studiare il sistema \[S:\begin{cases}\overset{\cdot}{x} = \left(\begin{matrix}0 & 1 & 1\\0 & -1 & 0\\0 & 0 & -1\end{matrix}\right) x+ \left(\begin{matrix}1\\0\\0\end{matrix}\right)u\\y = \left(\begin{matrix}1 & 0 & 1\end{matrix}\right) x +\left(\begin{matrix}0\end{matrix}\right) u\end{cases}\]\subsection{Studio Risposta Libera}
-Si studi la risposta libera di un sistema che ha le seguenti caratteristiche: \[A = \left(\begin{matrix}0 & 1 & 1\\0 & -1 & 0\\0 & 0 & -1\end{matrix}\right)\]
-Il determinante di $A-\lambda$ è $ - \lambda^{3} - 2 \lambda^{2} - \lambda $.
+\section{Esercizio 159 }
+ Studiare il sistema \[S:\begin{cases}\overset{\cdot}{x} = \left(\begin{matrix}-2 & 1 & 1\\1 & -1 & 0\\1 & 0 & -1\end{matrix}\right) x+ \left(\begin{matrix}1\\0\\1\end{matrix}\right)u\\y = \left(\begin{matrix}1 & 0 & -1\end{matrix}\right) x +\left(\begin{matrix}0\end{matrix}\right) u\end{cases}\]\subsection{Studio Risposta Libera}
+Si studi la risposta libera di un sistema che ha le seguenti caratteristiche: \[A = \left(\begin{matrix}-2 & 1 & 1\\1 & -1 & 0\\1 & 0 & -1\end{matrix}\right)\]
+Il determinante di $A-\lambda$ è $ - \lambda^{3} - 4 \lambda^{2} - 3 \lambda $.
 
-Gli autovalori reali sono $\lambda_i = [-1, 0]$.
+Gli autovalori reali sono $\lambda_i = [-3, -1, 0]$.
 
-Gli autovettori associati ai reali sono $ u_i: [  -1: (\left(\begin{matrix}-1\\1\\0\end{matrix}\right), \left(\begin{matrix}-1\\0\\1\end{matrix}\right))0: \left(\begin{matrix}1\\0\\0\end{matrix}\right) ]$
+Gli autovettori associati ai reali sono $ u_i: [  -3: \left(\begin{matrix}-2\\1\\1\end{matrix}\right)-1: \left(\begin{matrix}0\\-1\\1\end{matrix}\right)0: \left(\begin{matrix}1\\1\\1\end{matrix}\right) ]$
 .
 
-Da cui posso ricavare le matrici \[U=T^{-1} = \left(\begin{matrix}-1 & -1 & 1\\1 & 0 & 0\\0 & 1 & 0\end{matrix}\right), V = T = \left(\begin{matrix}0 & 1 & 0\\0 & 0 & 1\\1 & 1 & 1\end{matrix}\right)\]
-Che mi trasformano la matrice in \[ D = TAT^{-1} = \left(\begin{matrix}-1 & 0 & 0\\0 & -1 & 0\\0 & 0 & 0\end{matrix}\right) \]
-Da cui posso ricavare: \[ \Phi(t) = e^{At} = T^{-1} e^{Dt} T =  T^{-1} \left(\begin{matrix}e^{- t} & 0 & 0\\0 & e^{- t} & 0\\0 & 0 & 1\end{matrix}\right) T\]
+Da cui posso ricavare le matrici \[U=T^{-1} = \left(\begin{matrix}-2 & 0 & 1\\1 & -1 & 1\\1 & 1 & 1\end{matrix}\right), V = T = \left(\begin{matrix}- \frac{1}{3} & \frac{1}{6} & \frac{1}{6}\\0 & - \frac{1}{2} & \frac{1}{2}\\\frac{1}{3} & \frac{1}{3} & \frac{1}{3}\end{matrix}\right)\]
+Che mi trasformano la matrice in \[ D = TAT^{-1} = \left(\begin{matrix}-3 & 0 & 0\\0 & -1 & 0\\0 & 0 & 0\end{matrix}\right) \]
+Da cui posso ricavare: \[ \Phi(t) = e^{At} = T^{-1} e^{Dt} T =  T^{-1} \left(\begin{matrix}e^{- 3 t} & 0 & 0\\0 & e^{- t} & 0\\0 & 0 & 1\end{matrix}\right) T\]
 
-\[ = \left(\begin{matrix}1 & 1 - e^{- t} & 1 - e^{- t}\\0 & e^{- t} & 0\\0 & 0 & e^{- t}\end{matrix}\right) \]\[ \Psi(t) = \left(\begin{matrix}1 & 1 - e^{- t} & 1\end{matrix}\right), H(t) =  \left(\begin{matrix}1\\0\\0\end{matrix}\right),W(t) = \left(\begin{matrix}1\end{matrix}\right)\]\subsubsection{Osservabilità}
+\[ = \left(\begin{matrix}\frac{1}{3} + \frac{2 e^{- 3 t}}{3} & \frac{1}{3} - \frac{e^{- 3 t}}{3} & \frac{1}{3} - \frac{e^{- 3 t}}{3}\\\frac{1}{3} - \frac{e^{- 3 t}}{3} & \frac{1}{3} + \frac{e^{- t}}{2} + \frac{e^{- 3 t}}{6} & \frac{1}{3} - \frac{e^{- t}}{2} + \frac{e^{- 3 t}}{6}\\\frac{1}{3} - \frac{e^{- 3 t}}{3} & \frac{1}{3} - \frac{e^{- t}}{2} + \frac{e^{- 3 t}}{6} & \frac{1}{3} + \frac{e^{- t}}{2} + \frac{e^{- 3 t}}{6}\end{matrix}\right) \]\[ \Psi(t) = \left(\begin{matrix}e^{- 3 t} & \frac{e^{- t}}{2} - \frac{e^{- 3 t}}{2} & - \frac{e^{- t}}{2} - \frac{e^{- 3 t}}{2}\end{matrix}\right), H(t) =  \left(\begin{matrix}\frac{2}{3} + \frac{e^{- 3 t}}{3}\\\frac{2}{3} - \frac{e^{- t}}{2} - \frac{e^{- 3 t}}{6}\\\frac{2}{3} + \frac{e^{- t}}{2} - \frac{e^{- 3 t}}{6}\end{matrix}\right),W(t) = \left(\begin{matrix}- \frac{e^{- t}}{2} + \frac{e^{- 3 t}}{2}\end{matrix}\right)\]\subsubsection{Osservabilità}
  I modi naturali osservabili sono quelli tali che 
 \[ C \cdot u_i   \neq 0\]
 \subsubsection{Eccitabilità}
@@ -63,63 +63,65 @@ Da cui posso ricavare: \[ \Phi(t) = e^{At} = T^{-1} e^{Dt} T =  T^{-1} \left(\be
 
 Studiamone l'osservabilità. Calcoliamo allora $O$ e troviamo $\mathfrak{I} = \text{ker}(O)$:
 \[
- O = \begin{pmatrix}C \\ ... \\ CA^{n-1}  \end{pmatrix} = \left(\begin{matrix}1 & 0 & 1\\0 & 1 & 0\\0 & -1 & 0\end{matrix}\right), |O| = 0 \]
+ O = \begin{pmatrix}C \\ ... \\ CA^{n-1}  \end{pmatrix} = \left(\begin{matrix}1 & 0 & -1\\-3 & 1 & 2\\9 & -4 & -5\end{matrix}\right), |O| = 0 \]
 
 O ha rango $ 2 $ quindi il suo nucleo ha dimensione $ 1 $.
 
 Calcolando trovo \[ 
-I = ker(O) = \left[ \left(\begin{matrix}-1\\0\\1\end{matrix}\right)\right]\]
+I = ker(O) = \left[ \left(\begin{matrix}1\\1\\1\end{matrix}\right)\right]\]
 
 E $T^{-1}$ viene \[ 
-T^{-1} = \left(\begin{matrix}-1 & 0 & 0\\0 & 1 & 0\\1 & 0 & 1\end{matrix}\right) \]
+T^{-1} = \left(\begin{matrix}1 & 0 & 0\\1 & 1 & 0\\1 & 0 & 1\end{matrix}\right) \]
 \[ 
-T = \left(\begin{matrix}-1 & 0 & 0\\0 & 1 & 0\\1 & 0 & 1\end{matrix}\right) \]Calcoliamo allora le matrici del sistema, e vedremo che risultano partizionate come avevamo previsto:
+T = \left(\begin{matrix}1 & 0 & 0\\-1 & 1 & 0\\-1 & 0 & 1\end{matrix}\right) \]Calcoliamo allora le matrici del sistema, e vedremo che risultano partizionate come avevamo previsto:
 \[ 
-\overset{\sim}{A} = T A  T^{-1} = \left(\begin{matrix}-1 & 0 & 0\\0 & 1 & 0\\1 & 0 & 1\end{matrix}\right)\left(\begin{matrix}0 & 1 & 1\\0 & -1 & 0\\0 & 0 & -1\end{matrix}\right)\left(\begin{matrix}-1 & 0 & 0\\0 & 1 & 0\\1 & 0 & 1\end{matrix}\right) = \left(\begin{matrix}-1 & -1 & -1\\0 & -1 & 0\\0 & 1 & 0\end{matrix}\right) \]
+\overset{\sim}{A} = T A  T^{-1} = \left(\begin{matrix}1 & 0 & 0\\-1 & 1 & 0\\-1 & 0 & 1\end{matrix}\right)\left(\begin{matrix}-2 & 1 & 1\\1 & -1 & 0\\1 & 0 & -1\end{matrix}\right)\left(\begin{matrix}1 & 0 & 0\\1 & 1 & 0\\1 & 0 & 1\end{matrix}\right) = \left(\begin{matrix}0 & 1 & 1\\0 & -2 & -1\\0 & -1 & -2\end{matrix}\right) \]
 \[ 
-\overset{\sim}{C} = CT^{-1} = \left(\begin{matrix}1 & 0 & 1\end{matrix}\right)\left(\begin{matrix}-1 & 0 & 0\\0 & 1 & 0\\1 & 0 & 1\end{matrix}\right) = \left(\begin{matrix}0 & 0 & 1\end{matrix}\right) = ( 0\ \ \overset{\sim}{C}_2) \]
-Con le matrici \[ A_{11} = \left(\begin{matrix}-1\end{matrix}\right) , A_{22} = \left(\begin{matrix}-1 & 0\\1 & 0\end{matrix}\right) \]Quindi infine mi viene che gli autovalori osservabili sono $ -1\ 0\  $ e gli inosservabili sono $ -1\  $.
+\overset{\sim}{C} = CT^{-1} = \left(\begin{matrix}1 & 0 & -1\end{matrix}\right)\left(\begin{matrix}1 & 0 & 0\\1 & 1 & 0\\1 & 0 & 1\end{matrix}\right) = \left(\begin{matrix}0 & 0 & -1\end{matrix}\right) = ( 0\ \ \overset{\sim}{C}_2) \]
+Con le matrici \[ A_{11} = \left(\begin{matrix}0\end{matrix}\right) , A_{22} = \left(\begin{matrix}-2 & -1\\-1 & -2\end{matrix}\right) \]Quindi infine mi viene che gli autovalori osservabili sono $ -1\ -3\  $ e gli inosservabili sono $ 0\  $.
 
 \subsection{Studio Raggiungibilità}
-Ora per studiare la raggiungibilità degli stati calcolo $R = (B\ AB\ ...\ A^{n-1}B)$: \[ R = \left(\begin{matrix}1 & 0 & 0\\0 & 0 & 0\\0 & 0 & 0\end{matrix}\right), |R| = 0 \] 
+Ora per studiare la raggiungibilità degli stati calcolo $R = (B\ AB\ ...\ A^{n-1}B)$: \[ R = \left(\begin{matrix}1 & -1 & 3\\0 & 1 & -2\\1 & 0 & -1\end{matrix}\right), |R| = -2 \] 
 
-Vediamo che $rango(R) = 1$ e quindi : \[ \mathfrak{R} = \left[ \left(\begin{matrix}1\\0\\0\end{matrix}\right)\right] \]
+Vediamo che $rango(R) = 3$ e quindi : \[ \mathfrak{R} = \left[ \left(\begin{matrix}1\\0\\1\end{matrix}\right), \  \left(\begin{matrix}-1\\1\\0\end{matrix}\right), \  \left(\begin{matrix}3\\-2\\-1\end{matrix}\right)\right] \]
 
 Tutti gli stati che hanno questa struttura sono, allora, raggiungibili. Mettiamo in evidenza questa struttura;
 cambiamo base, e vorremmo avere lo stato espresso come $z = Tx$ tale che, se x è uno stato raggiungibile, allora: \[ z_R = T x_R = \begin{pmatrix} \star  \\ 0 \\0\end{pmatrix}\]
 
-E $T^{-1}$ viene \[ T^{-1} = \left(\begin{matrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{matrix}\right) \Longrightarrow T = \left(\begin{matrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{matrix}\right) \]
-\[ \overset{\sim}{A} = T A  T^{-1} = \left(\begin{matrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{matrix}\right)\left(\begin{matrix}0 & 1 & 1\\0 & -1 & 0\\0 & 0 & -1\end{matrix}\right)\left(\begin{matrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{matrix}\right) = \left(\begin{matrix}0 & 1 & 1\\0 & -1 & 0\\0 & 0 & -1\end{matrix}\right) \]Con le matrici \[ \overset{\sim}{A}_{11} = \left(\begin{matrix}0\end{matrix}\right) , \overset{\sim}{A}_{22} = \left(\begin{matrix}-1 & 0\\0 & -1\end{matrix}\right)  \]e le matrici \[ \overset{\sim}{B} = TB = \left(\begin{matrix}1\\0\\0\end{matrix}\right)  \]
+E $T^{-1}$ viene \[ T^{-1} = \left(\begin{matrix}1 & -1 & 3\\0 & 1 & -2\\1 & 0 & -1\end{matrix}\right) \Longrightarrow T = \left(\begin{matrix}\frac{1}{2} & \frac{1}{2} & \frac{1}{2}\\1 & 2 & -1\\\frac{1}{2} & \frac{1}{2} & - \frac{1}{2}\end{matrix}\right) \]
+\[ \overset{\sim}{A} = T A  T^{-1} = \left(\begin{matrix}\frac{1}{2} & \frac{1}{2} & \frac{1}{2}\\1 & 2 & -1\\\frac{1}{2} & \frac{1}{2} & - \frac{1}{2}\end{matrix}\right)\left(\begin{matrix}-2 & 1 & 1\\1 & -1 & 0\\1 & 0 & -1\end{matrix}\right)\left(\begin{matrix}1 & -1 & 3\\0 & 1 & -2\\1 & 0 & -1\end{matrix}\right) = \left(\begin{matrix}0 & 0 & 0\\1 & 0 & -3\\0 & 1 & -4\end{matrix}\right) \]Con le matrici \[ \overset{\sim}{A}_{11} = \left(\begin{matrix}0 & 0 & 0\\1 & 0 & -3\\0 & 1 & -4\end{matrix}\right) , \overset{\sim}{A}_{22} = \left(\begin{matrix}\end{matrix}\right)  \]e le matrici \[ \overset{\sim}{B} = TB = \left(\begin{matrix}1\\0\\0\end{matrix}\right)  \]
 Ora ne calcoliamo la raggiungibilità: \[ \overset{\sim}{H}(t) = e^{\overset{\sim}{A}t}\overset{\sim}{B} = \begin{pmatrix} e^{\overset{\sim}{A}_{11}t} &  \star \\ 0 & e^{\overset{\sim}{A}_{22}t} \end{pmatrix} \begin{pmatrix} \overset{\sim}{B}_1 \\ 0 \end{pmatrix} = \begin{pmatrix} e^{\overset{\sim}{A_{11}t}}\overset{\sim}{B_1} \\ 0 \end{pmatrix} \]
-Quindi infine mi viene che gli autovalori ragg sono $ 0,  $ e gli irrag sono $ -1,  $
+Quindi infine mi viene che gli autovalori ragg sono $ 0, -1, -3,  $ e gli irrag sono $  $
 \subsection{Scomposizione di Kalman}
-I miei sottospazi di riferimento sono:	\[ \mathfrak{I} = \left[ \left(\begin{matrix}-1\\0\\1\end{matrix}\right)\right], \mathfrak{R} = \left[ \left(\begin{matrix}1\\0\\0\end{matrix}\right)\right] \]
-La matrice dei vettori di base di I e R è \[ \chi_1 =  \left(\begin{matrix}\end{matrix}\right) \]Ed il determinante è ininfluente.
-\paragraph{Per quanto riguarda Chi2:} $ \chi_2 | \chi_2 \oplus \chi_1 = \mathfrak{R} $ è \[ \chi_2 = \left(\begin{matrix}1\\0\\0\end{matrix}\right) \]
+I miei sottospazi di riferimento sono:	\[ \mathfrak{I} = \left[ \left(\begin{matrix}1\\1\\1\end{matrix}\right)\right], \mathfrak{R} = \left[ \left(\begin{matrix}1\\0\\1\end{matrix}\right), \  \left(\begin{matrix}-1\\1\\0\end{matrix}\right), \  \left(\begin{matrix}3\\-2\\-1\end{matrix}\right)\right] \]
+La matrice dei vettori di base di I e R è \[ \chi_1 =  \left(\begin{matrix}-1\\-1\\-1\end{matrix}\right) \]
+Ci sono più righe che colonne quindi sicuro l'intersezione c'è.
 
-\paragraph{Per quanto riguarda Chi3:} $ \chi_3 | \chi_3 \oplus \chi_1 = \mathfrak{I} $ è \[ \chi_3 = \left(\begin{matrix}-1\\0\\1\end{matrix}\right) \]
+\paragraph{Per quanto riguarda Chi2:} $ \chi_2 | \chi_2 \oplus \chi_1 = \mathfrak{R} $ è \[ \chi_2 = \left(\begin{matrix}1 & -1\\0 & 1\\1 & 0\end{matrix}\right) \]
 
-\paragraph{Per quanto riguarda Chi4:} $ \chi_4 | \chi_1 \oplus \chi_2 \oplus  \chi_3 \oplus \chi_4 = \mathbb{R} $ è \[ \chi_4 = \left(\begin{matrix}0\\1\\0\end{matrix}\right) \]
-\paragraph{Ora facciamo T inversa:} \[ T^{-1} = (\chi_1\ \chi_2\ \chi_3\ \chi_4\ ) = \left(\begin{matrix}1 & -1 & 0\\0 & 0 & 1\\0 & 1 & 0\end{matrix}\right) \]
-e quindi \[T = \left(\begin{matrix}1 & 0 & 1\\0 & 0 & 1\\0 & 1 & 0\end{matrix}\right)\]
-\[ \widetilde{A} = TAT^{-1} = \left(\begin{matrix}0 & 1 & 0\\0 & 0 & -1\\0 & -1 & 0\end{matrix}\right) * T^{-1} = T*\left(\begin{matrix}0 & 1 & 1\\0 & 0 & -1\\0 & -1 & 0\end{matrix}\right) =\left(\begin{matrix}0 & 0 & 1\\0 & -1 & 0\\0 & 0 & -1\end{matrix}\right) \]
+\paragraph{Per quanto riguarda Chi3:} $ \chi_3 | \chi_3 \oplus \chi_1 = \mathfrak{I} $ è \[ \chi_3 = \left(\begin{matrix}\end{matrix}\right) \]
 
-\[ \widetilde{B} = T B = \left(\begin{matrix}1\\0\\0\end{matrix}\right) \]
+\paragraph{Per quanto riguarda Chi4:} $ \chi_4 | \chi_1 \oplus \chi_2 \oplus  \chi_3 \oplus \chi_4 = \mathbb{R} $ è \[ \chi_4 = \left(\begin{matrix}\end{matrix}\right) \]
+\paragraph{Ora facciamo T inversa:} \[ T^{-1} = (\chi_1\ \chi_2\ \chi_3\ \chi_4\ ) = \left(\begin{matrix}-1 & 1 & -1\\-1 & 0 & 1\\-1 & 1 & 0\end{matrix}\right) \]
+e quindi \[T = \left(\begin{matrix}-1 & -1 & 1\\-1 & -1 & 2\\-1 & 0 & 1\end{matrix}\right)\]
+\[ \widetilde{A} = TAT^{-1} = \left(\begin{matrix}2 & 0 & -2\\3 & 0 & -3\\3 & -1 & -2\end{matrix}\right) * T^{-1} = T*\left(\begin{matrix}0 & -1 & 3\\0 & 1 & -2\\0 & 0 & -1\end{matrix}\right) =\left(\begin{matrix}0 & 0 & -2\\0 & 0 & -3\\0 & 1 & -4\end{matrix}\right) \]
 
-\[ \widetilde{C} = C T^{-1} = \left(\begin{matrix}1 & 0 & 0\end{matrix}\right) \]
-\[Phi(t) = \left(\begin{matrix}1 & 0 & 1 - e^{- t}\\0 & e^{- t} & 0\\0 & 0 & e^{- t}\end{matrix}\right) \]
+\[ \widetilde{B} = T B = \left(\begin{matrix}0\\1\\0\end{matrix}\right) \]
+
+\[ \widetilde{C} = C T^{-1} = \left(\begin{matrix}0 & 0 & -1\end{matrix}\right) \]
+\[Phi(t) = \left(\begin{matrix}1 & - \frac{2}{3} + e^{- t} - \frac{e^{- 3 t}}{3} & - e^{- t} + e^{- 3 t}\\0 & \frac{3 e^{- t}}{2} - \frac{e^{- 3 t}}{2} & - \frac{3 e^{- t}}{2} + \frac{3 e^{- 3 t}}{2}\\0 & \frac{e^{- t}}{2} - \frac{e^{- 3 t}}{2} & - \frac{e^{- t}}{2} + \frac{3 e^{- 3 t}}{2}\end{matrix}\right) \]
 
 \subsection{Studio Funzione di trasferimento}
 
-\[ (sI-A) = \left(\begin{matrix}s & -1 & -1\\0 & s + 1 & 0\\0 & 0 & s + 1\end{matrix}\right), |sI-A| = s \left(s + 1\right)^{2} \]
-\[ \Phi(s) = (sI-A)^{-1} = \frac{\left(\begin{matrix}\left(s + 1\right)^{2} & s + 1 & s + 1\\0 & s \left(s + 1\right) & 0\\0 & 0 & s \left(s + 1\right)\end{matrix}\right)}{s \left(s + 1\right)^{2}} \]
+\[ (sI-A) = \left(\begin{matrix}s + 2 & -1 & -1\\-1 & s + 1 & 0\\-1 & 0 & s + 1\end{matrix}\right), |sI-A| = s \left(s + 1\right) \left(s + 3\right) \]
+\[ \Phi(s) = (sI-A)^{-1} = \frac{\left(\begin{matrix}\left(s + 1\right)^{2} & s + 1 & s + 1\\s + 1 & s^{2} + 3 s + 1 & 1\\s + 1 & 1 & s^{2} + 3 s + 1\end{matrix}\right)}{s \left(s + 1\right) \left(s + 3\right)} \]
 
 Le funzioni caratteristiche sono \[\begin{array}{rcl}  H(s) & = & \Phi(s)B \\ \Psi(s) & = & C \Phi(s)\\ W(s) & = & C(sI-A)^{-1}B  \end{array} \]
-\[ H(s) = \left(\begin{matrix}\left(s + 1\right)^{2} & s + 1 & s + 1\\0 & s \left(s + 1\right) & 0\\0 & 0 & s \left(s + 1\right)\end{matrix}\right)\cdot \frac{\left(\begin{matrix}1\\0\\0\end{matrix}\right)}{s \left(s + 1\right)^{2}} = \frac{\left(\begin{matrix}\left(s + 1\right)^{2}\\0\\0\end{matrix}\right)}{s \left(s + 1\right)^{2}} \]\[ \Psi(s) = \frac{\left(\begin{matrix}1 & 0 & 1\end{matrix}\right)}{s \left(s + 1\right)^{2}}\cdot\left(\begin{matrix}\left(s + 1\right)^{2} & s + 1 & s + 1\\0 & s \left(s + 1\right) & 0\\0 & 0 & s \left(s + 1\right)\end{matrix}\right)  = \frac{\left(\begin{matrix}\left(s + 1\right)^{2} & s + 1 & s \left(s + 1\right) + s + 1\end{matrix}\right)}{s \left(s + 1\right)^{2}} \]
-e quindi \[ H(s)  =  \frac{\left(\begin{matrix}\left(s + 1\right)^{2}\\0\\0\end{matrix}\right)}{s \left(s + 1\right)^{2}} \ \Psi(s) = \frac{\left(\begin{matrix}\left(s + 1\right)^{2} & s + 1 & s \left(s + 1\right) + s + 1\end{matrix}\right)}{s \left(s + 1\right)^{2}} \]
-\[ W(s)  =  \frac{\left(\begin{matrix}\left(s + 1\right)^{2}\end{matrix}\right)}{s \left(s + 1\right)^{2}} = \left(\begin{matrix}\frac{1}{s}\end{matrix}\right)  \] 
+\[ H(s) = \left(\begin{matrix}\left(s + 1\right)^{2} & s + 1 & s + 1\\s + 1 & s^{2} + 3 s + 1 & 1\\s + 1 & 1 & s^{2} + 3 s + 1\end{matrix}\right)\cdot \frac{\left(\begin{matrix}1\\0\\1\end{matrix}\right)}{s \left(s + 1\right) \left(s + 3\right)} = \frac{\left(\begin{matrix}s + \left(s + 1\right)^{2} + 1\\s + 2\\s^{2} + 4 s + 2\end{matrix}\right)}{s \left(s + 1\right) \left(s + 3\right)} \]\[ \Psi(s) = \frac{\left(\begin{matrix}1 & 0 & -1\end{matrix}\right)}{s \left(s + 1\right) \left(s + 3\right)}\cdot\left(\begin{matrix}\left(s + 1\right)^{2} & s + 1 & s + 1\\s + 1 & s^{2} + 3 s + 1 & 1\\s + 1 & 1 & s^{2} + 3 s + 1\end{matrix}\right)  = \frac{\left(\begin{matrix}s \left(s + 1\right) & s & s \left(- s - 2\right)\end{matrix}\right)}{s \left(s + 1\right) \left(s + 3\right)} \]
+e quindi \[ H(s)  =  \frac{\left(\begin{matrix}s + \left(s + 1\right)^{2} + 1\\s + 2\\s^{2} + 4 s + 2\end{matrix}\right)}{s \left(s + 1\right) \left(s + 3\right)} \ \Psi(s) = \frac{\left(\begin{matrix}s \left(s + 1\right) & s & s \left(- s - 2\right)\end{matrix}\right)}{s \left(s + 1\right) \left(s + 3\right)} \]
+\[ W(s)  =  \frac{\left(\begin{matrix}- s\end{matrix}\right)}{s \left(s + 1\right) \left(s + 3\right)} = \left(\begin{matrix}- \frac{1}{\left(s + 1\right) \left(s + 3\right)}\end{matrix}\right)  \] 
 Il grafico di bode è:
-\[ W(s) = \frac{\left(s + 1\right)^{2}}{s \left(s + 1\right)^{2}} \]\includegraphics[scale = 0.5]{figures/bode_4164632.png}
+\[ W(s) = \frac{- s}{s \left(s + 1\right) \left(s + 3\right)} \]\includegraphics[scale = 0.5]{figures/bode_8644027.png}
 
 
 \subsubsection{Vediamo le risposte:} 
