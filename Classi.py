@@ -1,4 +1,4 @@
-from sympy import Matrix,cos,E
+from sympy import Matrix,cos,E,pi,Rational,sin
 from sympy.abc import t,k
 from aux import gradino
 
@@ -153,10 +153,123 @@ sistema_159  = Sistema(n=159,
     B = Matrix([1,0,1]),
     C = Matrix([[1,0,-1]])
     )
+sistema_160  = Sistema(n=160,
+         A = Matrix([[-5,4],[-4,5]]),
+        B = Matrix([1,2]),
+        C = Matrix([[2,-1]]),
+        D = Matrix([2])
+)
+sistema_161  = Sistema(n=161,
+         A = Matrix([[1,1],[-5,-1]]),
+        B = Matrix([0,1]),
+        C = Matrix([[0,1]])
+)
+sistema_162 = Sistema(n=162,
+    A = Matrix([[0,0,0,0],[0,0,1,0],[0,-1,0,k],[0,-1,0,k]]),
+    B = Matrix([1,0,0,1]),
+    C = Matrix([[2,1,0,0]])
+    )
+sistema_163 = Sistema(n=163,
+    A = Matrix([[0,0,0,0],[0,0,1,0],[0,-1,0,-1],[0,-1,0,-1]]),
+    B = Matrix([1,0,0,1]),
+    C = Matrix([[2,1,0,0]]),
+    U_t = [Rational(1,2)*(E**(Rational(1,2)*t))*cos(t/2-pi/4)]
+    )
+sistema_164  = Sistema(n=164,
+         A = Matrix([[0,1],[0,-10]]),
+        B = Matrix([0,1]),
+        C = Matrix([[100,-1000]]),
+        D = Matrix([100])
+)
+sistema_165  = Sistema(n=165,
+         A = Matrix([[0,1],[0,-10]]),
+        B = Matrix([0,100]),
+        C = Matrix([[1,-10]]),
+        D = Matrix([100]),
+        U_t = [sin(t)]
+)
+sistema_166  = Sistema(n=166,
+         A = Matrix([[0,1],[1,0]]),
+        B = Matrix([1,1]),
+        C = Matrix([[1,-1]]) 
+)
 
+sistema_167  = Sistema(n=167,
+    A = Matrix([[0,0,-10],[1,0,-100],[0,1,-Rational(1,10)]]),
+    B = Matrix([-Rational(4,10),Rational(3,10),Rational(1,10)]),
+    C = Matrix([[0,0,1]])
+)
+
+sistema_167  = Sistema(n=167,
+    A = Matrix([[0,0,-10],[1,0,-100],[0,0,-Rational(1,10)]]),
+    B = Matrix([-Rational(4,10),Rational(3,10),Rational(1,10)]),
+    C = Matrix([[0,0,1]])
+)
+
+sistema_168  = Sistema(n=168,
+        A = Matrix([[1,-1],[3,-2]]),
+        B = Matrix([1,0]),
+        C = Matrix([[0,1]]) 
+)
+
+sistema_169  = Sistema(n=169,
+    A = Matrix([[0,0,0],[1,0,0],[0,1,-1]]),
+    B = Matrix([[0,1],[1,1],[0,0]]),
+    C = Matrix([[0,0,1]])
+)
+sistema_170 = Sistema(n=170,
+    A = Matrix([[0,0],[0,-1]]),
+    B = Matrix([[0,0],[0,1]]),
+    C = Matrix([[0,1]]),
+    D = Matrix([[1,0]]) 
+)
+
+sistema_171  = Sistema(n=171,
+    A = Matrix([[-1,0,0],[0,0,0],[0,0,0]]),
+    B = Matrix([[0,1],[1,1],[0,0]]),
+    C = Matrix([[0,0,1]])
+)
+sistema_172  = Sistema(n=172,
+    A = Matrix([[0,0,0,0],[1,0,0,0],[0,1,-1,0],[0,0,0,-1]]),
+    B = Matrix([[0,1],[1,1],[0,0],[0,1]]),
+    C = Matrix([[0,0,1,0],[0,0,0,1]]),
+    D = Matrix([[0,0],[1,0]])
+)
+
+sistema_173  = Sistema(n=173,
+    A = Matrix([[-1,1,0],[1,-2,1],[1,1,-2]]),
+    B = Matrix([1,0,1]),
+    C = Matrix([[1,-1,0]])
+)
+mezzo = Rational(1,2)
+sistema_174  = Sistema(n=174,
+    A = Matrix([[-3,0,0,0],[0,-2,-mezzo,mezzo],[0,0,mezzo,-mezzo],[0,0,mezzo,-5*mezzo]]),
+    B = Matrix([1,0,1,1]),
+    C = Matrix([[-1,-1,-1,1]])
+)
+sistema_175  = Sistema(n=175,
+    A = Matrix([[-3,0,0,0],[0,-2,mezzo,-mezzo],[0,0,-mezzo,mezzo],[0,0,-mezzo,-3*mezzo]]),
+    B = Matrix([1,0,1,1]),
+    C = Matrix([[-1,-1,1,-1]]),
+    U_t = [gradino(t-1)]
+)
+sistema_0 = Sistema(n=0,
+    A = Matrix([[-2,0,0],[0,-2,0],[0,0,-1]]),
+    B = Matrix([[-1,3,0],[0,1,0],[0,-2,1]]),
+    C = Matrix([[1,0,0],[0,1,1]]),
+    D = Matrix([[1,0,0],[1,0,0]])
+)
+sistema_1 = Sistema(n=1,
+    A = Matrix([[-2,0,0],[0,-2,0],[0,0,-1]]),
+    B = Matrix([[-1,3,0],[0,1,0],[0,-2,1]]),
+    C = Matrix([[1,0,1],[0,1,0]]),
+    D = Matrix([[1,0,0],[1,0,0]])
+)
 
 
 sistemi = {
+    0 : sistema_0,
+    1 : sistema_1,
     77 : sistema_77,
     88: sistema_88,
     99:sistema_99,
@@ -177,6 +290,21 @@ sistemi = {
     156 : sistema_156,
     157 : sistema_157,
     158 : sistema_158,
-    159 : sistema_159
-
+    159 : sistema_159,
+    160 : sistema_160,
+    161 : sistema_161,
+    162 : sistema_162,
+    163 : sistema_163,
+    164 : sistema_164,
+    165 : sistema_165,
+    166 : sistema_166,
+    167 : sistema_167,
+    168 : sistema_168,
+    169 : sistema_169,
+    170 : sistema_170,
+    171 : sistema_171,
+    172 : sistema_172,
+    173 : sistema_173,
+    174 : sistema_174,
+    175 : sistema_175
 }

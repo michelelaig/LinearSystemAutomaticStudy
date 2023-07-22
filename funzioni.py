@@ -3,7 +3,7 @@ from Osservabilita import studioOsservabilita
 from Raggiungibilita import studioRaggiungibilita
 from FunzioneTrasferimento import funzioneTrasferimento
 from Kalman import scomposizioneKalman
-from Discretizzazione import discretizzazioneDaW
+from Discretizzazione import discretizzazioneCompleta
 from Realizzazione import realizzazione
 from Classi import sistemi
 
@@ -40,7 +40,7 @@ def crea_esercizio(num,test):
 	print(f"Esercizio {num}")
 	out = ""
 
-
+	sistema = sistemi[num]
 	if num in sistemi:
 		A,B,C,D,u_t,x_0 = sistemi[num].get_dati()
 
@@ -73,10 +73,13 @@ def crea_esercizio(num,test):
 	out +="\n\subsection{Studio Funzione di trasferimento}\n"
 	s,W = funzioneTrasferimento(A,B,C,D,x_0,u_t)
 	out += s
+
+	#print("\tDiscretizzazione")
+	#out +="\n\subsection{Discretizzazione}\n"
+
+	#s = discretizzazioneCompleta(sistema)
+	#out+=s
 	'''
-	print("\tDiscretizzazione")
-	s,d = discretizzazioneDaW(W)
-	out+=s
 	print("\tRealizzazione")
 	out+="\n\subsection{Realizzazione}\n"
 	s,ragg,oss = realizzazione(W)

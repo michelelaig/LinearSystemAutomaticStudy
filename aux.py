@@ -140,6 +140,7 @@ def Zassenhaus(s1,s2):
 		if flag_int:
 			#print(v)
 			out.append(Matrix(v[s1m.rows::]))
+	#pprint(out)
 	return sempl_span(out)
 
 def intersezione_spazi_vettoriali(I, R):
@@ -260,6 +261,8 @@ def sempl_span(I):
 	if not len(I) or k in I:
 		return I
 	den = 1
+	denominatori = [n.denominator  for v in I for n in v if n.is_Rational] 
+	print(denominatori)
 	for v in I:
 		for n in v:
 			if n.is_Rational:

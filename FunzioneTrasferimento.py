@@ -1,5 +1,5 @@
 from sympy import eye,pprint,simplify,expand,factor,solve,Matrix
-from sympy.abc import s,t
+from sympy.abc import s,t,k
 from sympy.core import add
 from random import randint
 
@@ -136,6 +136,7 @@ def solo_bode_nyquist(W :Matrix)->str:
 
 def funzioneTrasferimento(A:Matrix,B:Matrix,C:Matrix,D:Matrix,X_0,U_t,W=None):
 	out = ""
+
 	if W:
 		for w in W:
 			out+="\subsection{$ %s $}"%l(w[0][0])
@@ -161,7 +162,9 @@ def funzioneTrasferimento(A:Matrix,B:Matrix,C:Matrix,D:Matrix,X_0,U_t,W=None):
 	pprint(C*H_num)
 	'''
 	W_num = simplify(C*H_num)+(D*P_d)
-	
+	if k in A:
+		return out,[W_num,P_d]
+
 	#W_num = Matrix([s-10])
 	#P_d = (s**2+3*s+2)*(s**2+1)
 	H_s = f"\[ H(s) = {l(Phi_num)}\cdot {f_l(B,P_d)} = {f_l(H_num,P_d)} \]"
@@ -173,8 +176,8 @@ def funzioneTrasferimento(A:Matrix,B:Matrix,C:Matrix,D:Matrix,X_0,U_t,W=None):
 	out += graficiB
 
 	plt.figure(1,clear=True)
-	#graficiN = graficiNyquist(W_num,P_d)
-	#out += graficiN
+	graficiN = graficiNyquist(W_num,P_d)
+	out += graficiN
 	out +="\n\subsubsection{Vediamo le risposte:}"
 	
 	for u_t in tqdm(U_t):

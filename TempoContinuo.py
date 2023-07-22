@@ -1,8 +1,9 @@
 
 from sympy import solve,symbols,latex,Matrix,eye,simplify
 from sympy import im,re
-from aux import l,vecreale,str_autovec_r,EDT,torna_ao,pt,ppt
 from sympy import pprint
+from sympy.abc import k
+from aux import l,vecreale,str_autovec_r,EDT,torna_ao,pt,ppt
 from aux import add_columns
 ###Stringhe prescritte###
 consegna = "Si studi la risposta libera di un sistema che ha le seguenti caratteristiche: \[A = %s\]\n"
@@ -119,6 +120,8 @@ def studioTempoContinuo(A : Matrix,B: Matrix,C: Matrix,D_s: Matrix,X_0: Matrix,u
 	#ppt(test,A)
 	lambda_ = symbols("lambda")
 	out = consegna%(l(A))
+	if k in A:
+		return "ciao", True
 	out+="Il determinante di $A-\lambda$ è $ %s $.\n"%l((A-lambda_*eye(A.rows)).det())
 	vals_r,vals_i,vecs_r,vecs_i = autocose(A)
 
